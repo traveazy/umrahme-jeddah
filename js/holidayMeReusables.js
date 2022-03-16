@@ -1018,24 +1018,23 @@ function barChart() {
 
     function my(svg) {
 
+        let filterSet = new Set();
+        myData.forEach(m => filterSet.add(m[filterBy]));
+        filterSet = Array.from(filterSet);
+
+        drawFilterButtons(filterSet);
+
         const brushHeight = 50;
         myData.map(m => m.fullDate = convertDate(m.Date));
-        myData = myData.filter(f => f.Vehicle === 'Bus');
-        myData = myData.sort((a,b) => d3.ascending(a.fullDate,b.fullDate));
-        myData.map(m => m.monthCount = d3.timeMonth.count(myData[0].fullDate, m.fullDate));
 
-        const xExtent = d3.extent(myData, d => d.fullDate);
+        let filteredData = myData.filter(f => f[filterBy] === filterSet[0]);
+
+        const xExtent = d3.extent(filteredData, d => d.fullDate);
         const xScaleBrush = d3.scaleTime().domain(xExtent).range([0,width - margins.left - margins.right]);
         let xScaleChart = d3.scaleTime().domain(xExtent).range([0,width - margins.left - margins.right]);
         const monthsInvolved = d3.timeMonth.count(xExtent[0],xExtent[1]) + 1;
         const xScaleBarBrush = d3.scaleBand().domain(d3.range(0,monthsInvolved,1)).range([0,width - margins.left - margins.right]);
-        const xScaleBarChart = d3.scaleBand().domain(d3.range(0,monthsInvolved,1)).range([0,width - margins.left - margins.right]);
-        const yScaleBrush = d3.scaleLinear().domain(d3.extent(myData, d => d.Value)).range([brushHeight,0]);
-        const yScaleChart = d3.scaleLinear().domain(d3.extent(myData, d => d.Value)).range([height - brushHeight - margins.top - margins.middle - margins.bottom,0]);
-
-        const brush = d3.brushX()
-            .extent([[0, 0], [width - margins.right-margins.left, brushHeight]])
-            .on("end", brushed);
+        let xScaleBarChart = d3.scaleBand().domain(d3.range(0,monthsInvolved,1)).range([0,width - margins.left - margins.right]);
 
         //non data elements
         if(d3.select(".clipPath" + myClass)._groups[0][0] === null) {
@@ -1048,53 +1047,79 @@ function barChart() {
             svg.append("g").attr("class","brushAxis yAxisChart" + myClass);
         }
 
-        d3.select(".brushGroup" + myClass)
-            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - brushHeight) + ")")
-            .call(brush)
-            .call(brush.move, [0,width - margins.right-margins.left]);
+        let yScaleChart = "";
+
+        const brush = d3.brushX()
+            .extent([[0, 0], [width - margins.right-margins.left, brushHeight]])
+            .on("end", brushed);
 
         d3.select(".xAxisBrush" + myClass)
             .call(d3.axisBottom(xScaleBrush).tickSizeOuter(0))
             .attr("transform","translate(" + margins.left + "," + (height - margins.bottom) + ")");
 
-        d3.select(".yAxisChart" + myClass)
-            .call(d3.axisLeft(yScaleChart).tickSizeOuter(0).tickFormat(d => d > 0 ? d3.format(myFormat)(d):  ""))
-            .attr("transform","translate(" + margins.left + "," + margins.top + ")");
+        redrawBarChart();
 
-        //button group
-        const brushBarGroup = svg.selectAll(".brushBarGroup" + myClass)
-            .data(myData)
-            .join(function(group){
-                var enter = group.append("g").attr("class","brushBarGroup" + myClass);
-                enter.append("rect").attr("class","brushBar");
-                return enter;
-            });
+        function redrawBarChart(){
 
-        brushBarGroup.select(".brushBar")
-            .attr("x",d => margins.left + xScaleBarBrush(d.monthCount))
-            .attr("y",d => yScaleBrush(d.Value) + (height - margins.bottom - brushHeight))
-            .attr("width",xScaleBarBrush.bandwidth()-1)
-            .attr("height", d => yScaleBrush(yScaleBrush.domain()[0]) - yScaleBrush(d.Value))
-            .attr("fill",myColor);
+            xScaleChart = d3.scaleTime().domain(xExtent).range([0,width - margins.left - margins.right]);
+            xScaleBarChart = d3.scaleBand().domain(d3.range(0,monthsInvolved,1)).range([0,width - margins.left - margins.right]);
 
-        function brushed(event) {
-            let extent = event.selection.map(xScaleBrush.invert, xScaleBrush);
-            extent[0] = new Date(extent[0].getFullYear(),extent[0].getMonth(),1);
-            extent[1] = new Date(extent[1].getFullYear(),extent[1].getMonth(),1);
-            xScaleChart.domain(extent);
-            const filteredMonthsInvolved = d3.timeMonth.count(extent[0],extent[1]) + 1;
-            xScaleBarChart.domain(d3.range(0,filteredMonthsInvolved,1));
-            let filteredBarData = JSON.parse(JSON.stringify(myData));
-            filteredBarData.map(m => m.fullDate = new Date(m.fullDate));
-            filteredBarData = filteredBarData.filter(f => f.fullDate >= extent[0] && f.fullDate <= extent[1]);
-            filteredBarData.map(m => m.monthCount = d3.timeMonth.count(filteredBarData[0].fullDate, m.fullDate));
-            drawChartBar(filteredBarData,1000)
+            d3.select(".brushGroup" + myClass)
+                .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - brushHeight) + ")")
+                .call(brush)
+                .call(brush.move, [0,width - margins.right-margins.left]);
+
+            filteredData = filteredData.sort((a,b) => d3.ascending(a.fullDate,b.fullDate));
+            filteredData.map(m => m.monthCount = d3.timeMonth.count(filteredData[0].fullDate, m.fullDate));
+
+            const yScaleBrush = d3.scaleLinear().domain(d3.extent(filteredData, d => d.Value)).range([brushHeight,0]);
+            yScaleChart = d3.scaleLinear().domain(d3.extent(filteredData, d => d.Value)).range([height - brushHeight - margins.top - margins.middle - margins.bottom,0]);
+            d3.select(".yAxisChart" + myClass)
+                .call(d3.axisLeft(yScaleChart).tickSizeOuter(0).tickFormat(d => d > 0 ? d3.format(myFormat)(d):  ""))
+                .attr("transform","translate(" + margins.left + "," + margins.top + ")");
+
+            //button group
+            const brushBarGroup = svg.selectAll(".brushBarGroup" + myClass)
+                .data(filteredData)
+                .join(function(group){
+                    var enter = group.append("g").attr("class","brushBarGroup" + myClass);
+                    enter.append("rect").attr("class","brushBar");
+                    return enter;
+                });
+
+            brushBarGroup.select(".brushBar")
+                .attr("x",d => margins.left + xScaleBarBrush(d.monthCount))
+                .attr("y",d => yScaleBrush(d.Value) + (height - margins.bottom - brushHeight))
+                .attr("width",xScaleBarBrush.bandwidth()-1)
+                .attr("height", d => yScaleBrush(yScaleBrush.domain()[0]) - yScaleBrush(d.Value))
+                .attr("fill",myColor)
+                .attr("fill-opacity",0.4);
+
+            drawChartBar(filteredData,0);
+
         }
 
+        function brushed(event) {
 
-        drawChartBar(myData,0);
+            if(event.sourceEvent !== undefined){
+                let extent = event.selection.map(xScaleBrush.invert, xScaleBrush);
+                extent[0] = new Date(extent[0].getFullYear(),extent[0].getMonth(),1);
+                extent[1] = new Date(extent[1].getFullYear(),extent[1].getMonth(),1);
+                if(extent[1] > xExtent[1]){extent[1] = xExtent[1]};
+                if(extent[0] < xExtent[0]){extent[0] = xExtent[0]};
+                xScaleChart.domain(extent);
+                const filteredMonthsInvolved = d3.timeMonth.count(extent[0],extent[1]) + 1;
+                xScaleBarChart.domain(d3.range(0,filteredMonthsInvolved,1));
+                let filteredBarData = JSON.parse(JSON.stringify(filteredData));
+                filteredBarData.map(m => m.fullDate = new Date(m.fullDate));
+                filteredBarData = filteredBarData.filter(f => f.fullDate >= extent[0] && f.fullDate <= extent[1]);
+                filteredBarData.map(m => m.monthCount = d3.timeMonth.count(extent[0], m.fullDate));
+                drawChartBar(filteredBarData,1000)
+            }
 
-        function drawChartBar(filteredBarData,transitionTime){
+        }
+
+        function drawChartBar(myFilteredBarData,transitionTime){
 
             d3.select(".xAxisChart" + myClass)
                 .transition()
@@ -1104,7 +1129,7 @@ function barChart() {
 
             //button group
             const chartBarData = svg.selectAll(".chartBarGroup" + myClass)
-                .data(filteredBarData, d => d.monthCount)
+                .data(myFilteredBarData, d => d.monthCount)
                 .join(function(group){
                     var enter = group.append("g").attr("class","chartBarGroup" + myClass);
                     enter.append("rect").attr("class","chartBar");
@@ -1119,6 +1144,47 @@ function barChart() {
                 .attr("fill",myColor);
 
         }
+
+        function drawFilterButtons(filterSet){
+            //button group
+            const filterButtonGroup = svg.selectAll(".filterButtonGroup" + myClass)
+                .data(filterSet)
+                .join(function(group){
+                    var enter = group.append("g").attr("class","filterButtonGroup" + myClass);
+                    enter.append("rect").attr("class","filterButtonRect filterButtonRect");
+                    enter.append("text").attr("class","filterButtonText");
+                    return enter;
+                });
+
+            filterButtonGroup.select(".filterButtonRect")
+                .attr("opacity", (d,i) => i === 0 ? 1 : 0.2)
+                .attr("id",d => d)
+                .attr("width",60)
+                .attr("height",15)
+                .attr("x",(d,i) => 10 + ((60+5) * i))
+                .attr("y",10)
+                .attr("rx",5)
+                .attr("ry",5)
+                .on("click",function(event,d){
+                    var myIndex = filterSet.findIndex(f => f === d);
+                    d3.selectAll(".filterButtonRect").attr("opacity", (d,i) => i === myIndex ? 1 : 0.2);
+                    d3.selectAll(".filterButtonText").attr("opacity", (d,i) => i === myIndex ? 1 : 0.2);
+                    filteredData = JSON.parse(JSON.stringify(myData)).filter(f => f[filterBy] === d);
+                    filteredData.map(m => m.fullDate = new Date(m.fullDate));
+                    redrawBarChart();
+                });
+
+            filterButtonGroup.select(".filterButtonText")
+                .attr("opacity", (d,i) => i === 0 ? 1 : 0.2)
+                .attr("text-anchor","middle")
+                .attr("height",15)
+                .attr("x",(d,i) => 10 + (60/2) + ((60+5) * i))
+                .attr("y",10 + (15/2) + 3.5)
+                .attr("rx",5)
+                .attr("ry",5)
+                .text(d => d);
+        }
+
 
         function convertDate(myDate){
             const dateSplit = myDate.split("/");
