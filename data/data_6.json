@@ -1,0 +1,490 @@
+[
+  {
+    "Country": "Saudi Arabia",
+    "Users": 0.25
+  },
+  {
+    "Country": "Pakistan",
+    "Users": 0.15
+  },
+  {
+    "Country": "Egypt",
+    "Users": 0.1
+  },
+  {
+    "Country": "India",
+    "Users": 0.08
+  },
+  {
+    "Country": "Bangladesh",
+    "Users": 0.06
+  },
+  {
+    "Country": "Indonesia",
+    "Users": 0.04
+  },
+  {
+    "Country": "United States",
+    "Users": 0.04
+  },
+  {
+    "Country": "United Arab Emirates",
+    "Users": 0.03
+  },
+  {
+    "Country": "Jordan",
+    "Users": 0.02
+  },
+  {
+    "Country": "Morocco",
+    "Users": 0.02
+  },
+  {
+    "Country": "Kazakhstan",
+    "Users": 0.02
+  },
+  {
+    "Country": "Nepal",
+    "Users": 0.02
+  },
+  {
+    "Country": "United Kingdom",
+    "Users": 0.02
+  },
+  {
+    "Country": "Afghanistan",
+    "Users": 0.02
+  },
+  {
+    "Country": "France",
+    "Users": 0.01
+  },
+  {
+    "Country": "Libya",
+    "Users": 0.01
+  },
+  {
+    "Country": "Qatar",
+    "Users": 0.01
+  },
+  {
+    "Country": "Belgium",
+    "Users": 0.01
+  },
+  {
+    "Country": "Malaysia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Netherlands",
+    "Users": 0.01
+  },
+  {
+    "Country": "Algeria",
+    "Users": 0.01
+  },
+  {
+    "Country": "Albania",
+    "Users": 0.01
+  },
+  {
+    "Country": "Germany",
+    "Users": 0.01
+  },
+  {
+    "Country": "Tunisia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Senegal",
+    "Users": 0.01
+  },
+  {
+    "Country": "Czechia",
+    "Users": 0.01
+  },
+  {
+    "Country": "South Africa",
+    "Users": 0.01
+  },
+  {
+    "Country": "Turkey",
+    "Users": 0.01
+  },
+  {
+    "Country": "Kenya",
+    "Users": 0.01
+  },
+  {
+    "Country": "Yemen",
+    "Users": 0.01
+  },
+  {
+    "Country": "Nigeria",
+    "Users": 0.01
+  },
+  {
+    "Country": "Kuwait",
+    "Users": 0.01
+  },
+  {
+    "Country": "Sri Lanka",
+    "Users": 0.01
+  },
+  {
+    "Country": "Canada",
+    "Users": 0.01
+  },
+  {
+    "Country": "Iraq",
+    "Users": 0.01
+  },
+  {
+    "Country": "Italy",
+    "Users": 0.01
+  },
+  {
+    "Country": "Oman",
+    "Users": 0.01
+  },
+  {
+    "Country": "Azerbaijan",
+    "Users": 0.01
+  },
+  {
+    "Country": "Andorra",
+    "Users": 0.01
+  },
+  {
+    "Country": "Portugal",
+    "Users": 0.01
+  },
+  {
+    "Country": "Austria",
+    "Users": 0.01
+  },
+  {
+    "Country": "Sudan",
+    "Users": 0.01
+  },
+  {
+    "Country": "Zimbabwe",
+    "Users": 0.01
+  },
+  {
+    "Country": "Australia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Lesotho",
+    "Users": 0.01
+  },
+  {
+    "Country": "Spain",
+    "Users": 0.01
+  },
+  {
+    "Country": "Finland",
+    "Users": 0.01
+  },
+  {
+    "Country": "Singapore",
+    "Users": 0.01
+  },
+  {
+    "Country": "Côte d’Ivoire",
+    "Users": 0.01
+  },
+  {
+    "Country": "Sweden",
+    "Users": 0.01
+  },
+  {
+    "Country": "Thailand",
+    "Users": 0.01
+  },
+  {
+    "Country": "Tanzania",
+    "Users": 0.01
+  },
+  {
+    "Country": "Vietnam",
+    "Users": 0.01
+  },
+  {
+    "Country": "Bahrain",
+    "Users": 0.01
+  },
+  {
+    "Country": "Maldives",
+    "Users": 0.01
+  },
+  {
+    "Country": "Palestine",
+    "Users": 0.01
+  },
+  {
+    "Country": "Russia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Philippines",
+    "Users": 0.01
+  },
+  {
+    "Country": "Somalia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Ghana",
+    "Users": 0.01
+  },
+  {
+    "Country": "Ireland",
+    "Users": 0.01
+  },
+  {
+    "Country": "Mali",
+    "Users": 0.01
+  },
+  {
+    "Country": "South Korea",
+    "Users": 0.01
+  },
+  {
+    "Country": "China",
+    "Users": 0.01
+  },
+  {
+    "Country": "Angola",
+    "Users": 0.01
+  },
+  {
+    "Country": "Israel",
+    "Users": 0.01
+  },
+  {
+    "Country": "Romania",
+    "Users": 0.01
+  },
+  {
+    "Country": "Mauritius",
+    "Users": 0.01
+  },
+  {
+    "Country": "Switzerland",
+    "Users": 0.01
+  },
+  {
+    "Country": "Kyrgyzstan",
+    "Users": 0.01
+  },
+  {
+    "Country": "Denmark",
+    "Users": 0.01
+  },
+  {
+    "Country": "Burkina Faso",
+    "Users": 0.01
+  },
+  {
+    "Country": "Faroe Islands",
+    "Users": 0.01
+  },
+  {
+    "Country": "Gabon",
+    "Users": 0.01
+  },
+  {
+    "Country": "Mauritania",
+    "Users": 0.01
+  },
+  {
+    "Country": "Seychelles",
+    "Users": 0.01
+  },
+  {
+    "Country": "Hungary",
+    "Users": 0.01
+  },
+  {
+    "Country": "Japan",
+    "Users": 0.01
+  },
+  {
+    "Country": "Djibouti",
+    "Users": 0.01
+  },
+  {
+    "Country": "Georgia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Syria",
+    "Users": 0.01
+  },
+  {
+    "Country": "Latvia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Mozambique",
+    "Users": 0.01
+  },
+  {
+    "Country": "Norway",
+    "Users": 0.01
+  },
+  {
+    "Country": "Bermuda",
+    "Users": 0.01
+  },
+  {
+    "Country": "Brunei",
+    "Users": 0.01
+  },
+  {
+    "Country": "Equatorial Guinea",
+    "Users": 0.01
+  },
+  {
+    "Country": "Lebanon",
+    "Users": 0.01
+  },
+  {
+    "Country": "Niger",
+    "Users": 0.01
+  },
+  {
+    "Country": "Poland",
+    "Users": 0.01
+  },
+  {
+    "Country": "Ukraine",
+    "Users": 0.01
+  },
+  {
+    "Country": "Uzbekistan",
+    "Users": 0.01
+  },
+  {
+    "Country": "American Samoa",
+    "Users": 0.01
+  },
+  {
+    "Country": "Belarus",
+    "Users": 0.01
+  },
+  {
+    "Country": "Myanmar (Burma)",
+    "Users": 0.01
+  },
+  {
+    "Country": "Serbia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Zambia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Bulgaria",
+    "Users": 0.01
+  },
+  {
+    "Country": "Cyprus",
+    "Users": 0.01
+  },
+  {
+    "Country": "Hong Kong",
+    "Users": 0.01
+  },
+  {
+    "Country": "Moldova",
+    "Users": 0.01
+  },
+  {
+    "Country": "Malta",
+    "Users": 0.01
+  },
+  {
+    "Country": "Kosovo",
+    "Users": 0.01
+  },
+  {
+    "Country": "Armenia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Benin",
+    "Users": 0.01
+  },
+  {
+    "Country": "Brazil",
+    "Users": 0.01
+  },
+  {
+    "Country": "Bahamas",
+    "Users": 0.01
+  },
+  {
+    "Country": "Cameroon",
+    "Users": 0.01
+  },
+  {
+    "Country": "Estonia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Western Sahara",
+    "Users": 0.01
+  },
+  {
+    "Country": "Greece",
+    "Users": 0.01
+  },
+  {
+    "Country": "Iran",
+    "Users": 0.01
+  },
+  {
+    "Country": "Cambodia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Montenegro",
+    "Users": 0.01
+  },
+  {
+    "Country": "North Macedonia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Namibia",
+    "Users": 0.01
+  },
+  {
+    "Country": "St. Pierre & Miquelon",
+    "Users": 0.01
+  },
+  {
+    "Country": "Slovenia",
+    "Users": 0.01
+  },
+  {
+    "Country": "Chad",
+    "Users": 0.01
+  },
+  {
+    "Country": "Togo",
+    "Users": 0.01
+  },
+  {
+    "Country": "Taiwan",
+    "Users": 0.01
+  },
+  {
+    "Country": "Venezuela",
+    "Users": 0.01
+  }
+]

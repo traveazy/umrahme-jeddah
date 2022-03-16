@@ -72,6 +72,10 @@ function drawCharts(divId,mapData,chartData){
         drawMapBar(divId,mapData,currentChart);
     } else if (currentChart.type === "bar"){
         drawBar(divId,currentChart);
+    } else if (currentChart.type === "network"){
+        drawNetwork(divId,currentChart);
+    } else if (currentChart.type === "area"){
+        drawArea(divId,currentChart);
     }
 }
 
@@ -112,6 +116,38 @@ function drawBar(divId,currentChart){
         .legendVar(currentChart.name)
         .myFormat(currentChart.format)
         .filterBy(currentChart.filterBy);
+
+    my_chart(svg);
+}
+
+function drawArea(divId,currentChart){
+
+    var svg = d3.select("." + divId + "_svg");
+    var width = +svg.attr("width");
+    var height = +svg.attr("height");
+
+    var my_chart = areaChart()
+        .width(width)
+        .height(height)
+        .myData(currentChart.data)
+        .myClass(divId)
+        .myColor(currentChart.color)
+        .myFormat(currentChart.format);
+
+    my_chart(svg);
+}
+
+function drawNetwork(divId,currentChart){
+
+    var svg = d3.select("." + divId + "_svg");
+    var width = +svg.attr("width");
+    var height = +svg.attr("height");
+
+    var my_chart = networkChart()
+        .width(width)
+        .height(height)
+        .myData(currentChart.data)
+        .myClass(divId);
 
     my_chart(svg);
 }

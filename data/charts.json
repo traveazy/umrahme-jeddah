@@ -3,8 +3,8 @@
   {"id": 2,"name": "passengers","title": "Mu'tamir Booked with Umrahme","type": "globe",  "colorRange": ["#e2d6eb","#4C1088"],"colorVar": "Booked","format": ",", "filterBy": ""},
   {"id": 3,"name": "bookings","title": "Highest Booked Hotel Category","type": "pyramid","colorRange": ["#FFA800","#19C5BD"],"colorVars": ["Makkah","Madinah"],"binVar": "Rating" ,"format": ".0%", "filterBy": "Category","filterBy2": "Season"},
    {"id":4,"name": "transport","title": "Transportation Types | Booking Value","type": "bar", "filterBy": "Vehicle","color": "#4C1088","format": ".0%"},
-  {"id": 5,"name": "growth","title": "Umrahme Company Growth","type": "area"},
-  {"id": 6,"name": "social","title": "TBC social related??","type": "wordcloud"},
-  {"id": 7,"name": "traffic","title": "Website Traffic","type": "heatmap"},
-  {"id": 8,"name": "ecosystem","title": "Ecosystem Map","type": "network"}
+  {"id": 5,"name": "ecosystem","title": "Ecosystem Map","type": "network"},
+  {"id": 6,"name": "traffic","title": "Website Traffic","type": "globe","colorRange": ["#d2e9f4","#3091BE"],"colorVar": "Users","format": ".0%","filterBy": ""},
+  {"id": 7,"name": "growth","title": "Umrahme Company Growth","type": "area", "color": "#ED1A64","format": ".0%"},
+  {"id": 8,"name": "social","title": "TBC social related??","type": "wordcloud"}
 ]

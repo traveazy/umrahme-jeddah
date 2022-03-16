@@ -1051,7 +1051,7 @@ function barChart() {
 
         const brush = d3.brushX()
             .extent([[0, 0], [width - margins.right-margins.left, brushHeight]])
-            .on("end", brushed);
+            .on("brush", brushed);
 
         d3.select(".xAxisBrush" + myClass)
             .call(d3.axisBottom(xScaleBrush).tickSizeOuter(0))
@@ -1243,6 +1243,312 @@ function barChart() {
 
     return my;
 }
+
+function networkChart() {
+    //REUSABLE bar Chart
+
+    var myData = [],
+        myClass="",
+        width = 0,
+        height = 0;
+
+
+    function my(svg) {
+
+        const radiusBig = width/12;
+        const radiusSmall = width/16;
+
+        myData.nodes.map(m => m.fx = (m.id <= 1 ? width/2 : null));
+        myData.nodes.map(m => m.fy = (m.id === 0 ? height/2 : (m.id === 1 ? (height/2)-(radiusBig*2.5): null)));
+
+
+
+        const simulation = d3.forceSimulation(myData.nodes)
+            .force("link", d3.forceLink(myData.links).id(d => d.id).distance(radiusBig * 3))
+            .force("charge",d3.forceManyBody().strength(-200))
+            .force("collide", d3.forceCollide().radius(d =>  d.size === "big" ? radiusBig * 1.4 : radiusSmall * 1.4).strength(0.7))
+            .force("x",  d3.forceX(width/2).strength(0.3))
+            .force("y",d3.forceY(height/2).strength(0.3))
+            .on("tick", ticked);
+
+
+        //button group
+        const linksGroup = svg.selectAll(".linksGroup" + myClass)
+            .data(myData.links)
+            .join(function(group){
+                var enter = group.append("g").attr("class","linksGroup" + myClass);
+                enter.append("line").attr("class","linkLine");
+                return enter;
+            });
+
+        linksGroup.select(".linkLine")
+            .attr("stroke", "#A0A0A0")
+            .attr("stroke-width", 1);
+
+        //nodes group
+        const nodesGroup = svg.selectAll(".nodesGroup" + myClass)
+            .data(myData.nodes)
+            .join(function(group){
+                var enter = group.append("g").attr("class","nodesGroup" + myClass);
+                enter.append("circle").attr("class","nodeCircle");
+                enter.append("text").attr("class","nodeLabel");
+                enter.append("text").attr("class","nodeLabel2");
+                enter.append("text").attr("class","far nodeIcon");
+                enter.append("svg:image").attr("class","nodeImage");
+                return enter;
+            });
+
+        nodesGroup.select(".nodeCircle")
+            .attr("fill","white")
+            .attr("stroke","#A0A0A0")
+            .attr("r", d => d.size === "big" ? radiusBig : radiusSmall);
+
+        nodesGroup.select(".nodeIcon")
+            .attr("text-anchor","middle")
+            .attr("fill","#ED1A64")
+            .attr("font-size",radiusSmall/1.5)
+            .text(d => d.icon === undefined ? "" : d.icon);
+
+
+        nodesGroup.select(".nodeImage")
+            .attr("x",-radiusBig*0.75)
+            .attr("y",-radiusBig*0.375)
+            .attr("width",radiusBig*1.5)
+            .attr("height",radiusBig*0.75)
+            .attr("xlink:href", d => d.image === undefined ? "" : "flags/" + d.image);
+
+        nodesGroup.select(".nodeLabel")
+            .attr("text-anchor","middle")
+            .attr("y",20)
+            .text(d => d.image !== undefined ? "" : d.name.split(" ")[0]);
+
+        nodesGroup.select(".nodeLabel2")
+            .attr("y",32)
+            .attr("text-anchor","middle")
+            .text(d => d.name.split(" ").length > 1 ? d.name.split(" ")[1] : "");
+
+
+
+        function ticked() {
+
+            d3.selectAll(".linkLine")
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            d3.selectAll(".nodesGroup" + myClass)
+                .attr("transform", d =>  "translate(" +  d.x + "," + d.y + ")");
+        }
+
+
+
+
+    }
+
+    my.width = function(value) {
+        if (!arguments.length) return width;
+        width = value;
+        return my;
+    };
+
+    my.height = function(value) {
+        if (!arguments.length) return height;
+        height = value;
+        return my;
+    };
+
+    my.myData = function(value) {
+        if (!arguments.length) return myData;
+        myData = value;
+        return my;
+    };
+
+    my.myClass = function(value) {
+        if (!arguments.length) return myClass;
+        myClass = value;
+        return my;
+    };
+
+
+    return my;
+}
+
+function areaChart() {
+    //REUSABLE area Chart
+
+    var myData = [],
+        myClass="",
+        width = 0,
+        height = 0,
+        margins = {"left":50,"right":10,"top":50,"bottom":30,"middle":50};
+
+
+    function my(svg) {
+
+        const brushHeight = 50;
+
+        myData = myData.sort((a,b) => d3.ascending(a.Week,b.Week));
+
+        const xExtent = d3.extent(myData, d => d.Week);
+        const xScaleBrush = d3.scaleLinear().domain(xExtent).range([0,width - margins.left - margins.right]);
+        let xScaleChart = d3.scaleLinear().domain(xExtent).range([0,width - margins.left - margins.right]);
+
+        //non data elements
+        if(d3.select(".clipPath" + myClass)._groups[0][0] === null) {
+            svg.append("clipPath").attr("class","clipPath" + myClass)
+                .attr("id","areaClipPath")
+                .append('rect').attr('class', 'clipRect' + myClass);
+            svg.append("g").attr("class"," brushGroup" + myClass);
+            svg.append("g").attr("class","brushAxis xAxisBrush" + myClass);
+            svg.append("g").attr("class","brushAxis xAxisChart" + myClass);
+            svg.append("g").attr("class","brushAxis yAxisChart" + myClass);
+            svg.append("path").attr("class","brushPath" + myClass);
+            svg.append("path").attr("class","chartPath" + myClass);
+            svg.append("path").attr("class","brushArea" + myClass);
+            svg.append("path").attr("class","chartArea" + myClass);
+        }
+
+        d3.select(".clipRect" + myClass)
+            .attr("width",width - margins.left - margins.right)
+            .attr("height",height - margins.top - margins.middle - margins.bottom - brushHeight);
+
+
+        const brush = d3.brushX()
+            .extent([[0, 0], [width - margins.right-margins.left, brushHeight]])
+            .on("brush", brushed);
+
+        d3.select(".xAxisBrush" + myClass)
+            .call(d3.axisBottom(xScaleBrush).tickSizeOuter(0))
+            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom) + ")");
+
+
+        d3.select(".brushGroup" + myClass)
+            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - brushHeight) + ")")
+            .call(brush)
+            .call(brush.move, [0,width - margins.right-margins.left]);
+
+        const yScaleBrush = d3.scaleLinear().domain(d3.extent(myData, d => d.Growth)).range([brushHeight,0]);
+        let yScaleChart = d3.scaleLinear().domain(d3.extent(myData, d => d.Growth)).range([height - brushHeight - margins.top - margins.middle - margins.bottom,0]);
+
+        const lineBrush = d3.line()
+            .x(d => xScaleBrush(d.Week))
+            .y(d => yScaleBrush(d.Growth));
+
+        const areaBrush = d3.area()
+            .x(d => xScaleBrush(d.Week))
+            .y0(d => yScaleBrush(d.Growth))
+            .y1(yScaleBrush(0));
+
+        const lineChart = d3.line()
+            .x(d => xScaleChart(d.Week))
+            .y(d => yScaleChart(d.Growth));
+
+        const areaChart = d3.area()
+            .x(d => xScaleChart(d.Week))
+            .y0(d => yScaleChart(d.Growth))
+            .y1(yScaleChart(0));
+
+        d3.select(".brushPath" + myClass)
+            .attr("stroke",myColor)
+            .attr("fill","transparent")
+            .attr("d",lineBrush(myData))
+            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - brushHeight) + ")");
+
+        d3.select(".brushArea" + myClass)
+            .attr("fill",myColor)
+            .attr("fill-opacity",0.2)
+            .attr("stroke","transparent")
+            .attr("d",areaBrush(myData))
+            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - brushHeight) + ")");
+
+
+        d3.select(".yAxisChart" + myClass)
+            .call(d3.axisLeft(yScaleChart).tickSizeOuter(0).tickFormat(d => d > 0 ? d3.format(myFormat)(d):  ""))
+            .attr("transform","translate(" + margins.left + "," + margins.top + ")");
+
+       drawChartLine(myData,0);
+
+
+        function brushed(event) {
+
+            if(event.sourceEvent !== undefined){
+                let extent = event.selection.map(xScaleBrush.invert, xScaleBrush);
+                if(extent[1] > xExtent[1]){extent[1] = xExtent[1]};
+                if(extent[0] < xExtent[0]){extent[0] = xExtent[0]};
+                xScaleChart.domain(extent);
+                drawChartLine(1000)
+            }
+
+        }
+
+        function drawChartLine(transitionTime){
+
+            d3.select(".chartPath" + myClass)
+                .attr('clip-path', 'url(#areaClipPath)')
+                .attr("stroke",myColor)
+                .attr("fill","transparent")
+                .attr("d",lineChart(myData))
+                .attr("transform","translate(" + margins.left + "," + margins.top + ")");
+
+            d3.select(".chartArea" + myClass)
+                .attr('clip-path', 'url(#areaClipPath)')
+                .attr("fill",myColor)
+                .attr("fill-opacity",0.2)
+                .attr("stroke","transparent")
+                .attr("d",areaChart(myData))
+                .attr("transform","translate(" + margins.left + "," + margins.top + ")");
+
+
+            d3.select(".xAxisChart" + myClass)
+                .transition()
+                .duration(transitionTime)
+                .call(d3.axisBottom(xScaleChart).tickSizeOuter(0))
+                .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - margins.middle - brushHeight) + ")")
+
+        }
+
+    }
+
+    my.width = function(value) {
+        if (!arguments.length) return width;
+        width = value;
+        return my;
+    };
+
+    my.height = function(value) {
+        if (!arguments.length) return height;
+        height = value;
+        return my;
+    };
+
+    my.myData = function(value) {
+        if (!arguments.length) return myData;
+        myData = value;
+        return my;
+    };
+
+    my.myClass = function(value) {
+        if (!arguments.length) return myClass;
+        myClass = value;
+        return my;
+    };
+
+    my.myColor = function(value) {
+        if (!arguments.length) return myColor;
+        myColor = value;
+        return my;
+    };
+
+    my.myFormat = function(value) {
+        if (!arguments.length) return myFormat;
+        myFormat = value;
+        return my;
+    };
+
+    return my;
+}
+
 function getButtonOpacity(d){
 
     if(holidayMe.selectedButton === d){
