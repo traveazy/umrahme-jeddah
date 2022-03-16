@@ -469,7 +469,7 @@ function mapBarChart() {
                 });
 
 
-            const xScale = d3.scaleLinear().domain([0,colorExtent[1]]).range([0,70]);
+            const xScale = d3.scaleLinear().domain([0,colorExtent[1]]).range([0,width - 40 - mapWidth - 110 - 30]);
             const hBarHeight = 30;
             //bars group
             const hBarGroup = svg.selectAll(".hBarGroup" + myClass)
@@ -528,15 +528,21 @@ function mapBarChart() {
                 .style("pointer-events","none")
                 .attr("x",110)
                 .attr("y",(d,i) => (i * hBarHeight) + 2.5)
-                .attr("width",d => xScale(+d[colorVar]))
+                .attr("width",0)
                 .attr("height",20)
-                .attr("fill", d => colorScale(+d[colorVar]));
+                .attr("fill", d => colorScale(+d[colorVar]))
+                .transition()
+                .duration(1000)
+                .attr("width",d => xScale(+d[colorVar]));
 
             hBarGroup.select(".valueLabel")
                 .style("pointer-events","none")
-                .attr("x",d => 114 + xScale(+d[colorVar]))
+                .attr("x",d => 114)
                 .attr("y",(d,i) => (i * hBarHeight) + 17)
-                .text((d,i) => numberFormat(+d[colorVar]));
+                .text((d,i) => numberFormat(+d[colorVar]))
+                .transition()
+                .duration(1000)
+                .attr("x",d => 114 + xScale(+d[colorVar]));
 
         }
 
@@ -648,7 +654,7 @@ function mapBarChart() {
 
 
 
-function histogramChart() {
+function pyramidChart() {
     //REUSABLE button Chart
 
     var myData = [],
@@ -660,70 +666,194 @@ function histogramChart() {
         binVar ="",
         filterBy="",
         myFormat="",
-        margins = {"left":40,"right":10,"top":20,"bottom":20};
+        margins = {"left":40,"right":40,"top":150,"bottom":80},
+        currentFilter = "",
+        currentFilter2 = "";
 
 
     function my(svg) {
 
-        myData = myData.filter(f => f.Season ==="2020-2021");
-        var xBins = new Set();
-        myData.forEach(d => xBins.add(d[binVar]));
-        xBins = Array.from(xBins);
+        var filterSet = new Set();
+        myData.forEach(d => filterSet.add(d[filterBy].toUpperCase()));
+        filterSet = Array.from(filterSet);
+        currentFilter = filterSet[0];
+        drawFilterButtons(filterSet,0,"#707070",myClass + "_0",120);
 
-        var xScale = d3.scaleBand()
-            .domain(xBins)
-            .range([0, width-margins.left-margins.right]);
+        var filterSet2 = new Set();
+        myData.forEach(d => filterSet2.add(d[filterBy2]));
+        filterSet2 = Array.from(filterSet2);
+        currentFilter2 = filterSet2[0];
 
-        const maxY = d3.max(myData, d => Math.max(d[colorVars[0]],d[colorVars[1]]));
-        var yScale = d3.scaleLinear()
-            .range([height-margins.top-margins.bottom, 0])
-            .domain([0 ,maxY]);
+        drawFilterButtons(filterSet2,35,"#A0A0A0",myClass + "_1",100);
+
+        let filteredData = JSON.parse(JSON.stringify(myData));
+        filteredData = filteredData.filter(f => f[filterBy].toUpperCase() === currentFilter);
+        filteredData = filteredData.filter(f => f[filterBy2] === currentFilter2);
+
+        var pyramidGap = 100;
 
         //non data elements
         if(d3.select(".xAxis" + myClass)._groups[0][0] === null) {
-            svg.append("g").attr("class","xAxis" + myClass);
-            svg.append("g").attr("class","yAxis" + myClass);
-         }
+            svg.append("g").attr("class","axis xAxisLeft" + myClass);
+            svg.append("g").attr("class","axis xAxisRight" + myClass);
+            svg.append("g").attr("class","midAxis yAxis" + myClass);
+            svg.append("text").attr("class","largerTitle titleLeft" + myClass);
+            svg.append("text").attr("class","titleMid" + myClass);
+            svg.append("text").attr("class","largerTitle titleRight" + myClass);
+        }
 
-        d3.select(".xAxis" + myClass)
-            .call(d3.axisBottom(xScale).tickSizeOuter(0))
-            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom) + ")")
+        d3.select(".titleLeft" + myClass)
+            .style("text-anchor" ,"end")
+            .attr("x",(width/2) - pyramidGap/2)
+            .attr("y",margins.top - 45)
+            .text(colorVars[0]);
+
+        d3.select(".titleRight" + myClass)
+            .attr("x",(width/2) + pyramidGap/2)
+            .attr("y",margins.top - 45)
+            .text(colorVars[1]);
+
+        d3.select(".titleMid" + myClass)
+            .style("text-anchor" ,"middle")
+            .attr("x",(width/2))
+            .attr("y",margins.top - 45)
+            .text("v");
+
+        var yBins = new Set();
+        filteredData.forEach(d => yBins.add(d[binVar]));
+        yBins = Array.from(yBins);
+
+        var yScale = d3.scaleBand()
+            .domain(yBins)
+            .range([0, height-margins.top-margins.bottom]);
 
         d3.select(".yAxis" + myClass)
-            .call(d3.axisLeft(yScale).tickFormat(d => d3.format(myFormat)(d)).tickSizeOuter(0))
-            .attr("transform","translate(" + margins.left + "," +  margins.top + ")")
+            .call(d3.axisLeft(yScale).tickFormat(d => d +  " star"))
+            .attr("transform","translate(" + (width/2) + "," +  margins.top + ")");
 
-        let histogramData = [];
-        myData.forEach(function(d){
-            histogramData.push({
-                "binVal": d[binVar],
-                "fill":colorRange[0],
-                "value": d[colorVars[0]]
-            });
-            histogramData.push({
-                "binVal": d[binVar],
-                "fill":colorRange[1],
-                "value": d[colorVars[1]]
+        d3.selectAll(".yAxis" + myClass + " .tick text")
+            .attr("x",0)
+            .style("text-anchor" ,"middle");
+
+        redrawPyramid();
+
+        function redrawPyramid(){
+
+            const maxX = d3.max(filteredData, d => Math.max(d[colorVars[0]],d[colorVars[1]]));
+            var xScale = d3.scaleLinear()
+                .range([0,(width - pyramidGap - margins.left - margins.right)/2])
+                .domain([0 ,maxX]);
+
+            var xScaleReverse = d3.scaleLinear()
+                .range([0,(width - pyramidGap - margins.left - margins.right)/2])
+                .domain([maxX,0]);
+
+            d3.select(".xAxisLeft" + myClass)
+                .call(d3.axisTop(xScale).tickSizeOuter(0).tickFormat(d => d > 0 ? d3.format(myFormat)(d):"").tickSizeOuter(0))
+                .attr("transform","translate(" + ((width/2) + (pyramidGap/2)) + "," + (margins.top - 10) + ")")
+
+            d3.select(".xAxisRight" + myClass)
+                .call(d3.axisTop(xScaleReverse).tickSizeOuter(0).tickFormat(d => d > 0 ?d3.format(myFormat)(d):"").tickSizeOuter(0))
+                .attr("transform","translate(" + margins.left + "," + (margins.top - 10) + ")")
+
+            let histogramData = [];
+
+            filteredData.forEach(function(d){
+                histogramData.push({
+                    "position": "left",
+                    "binVal": d[binVar],
+                    "fill":colorRange[0],
+                    "value": d[colorVars[0]]
+                });
+                histogramData.push({
+                    "position": "right",
+                    "binVal": d[binVar],
+                    "fill":colorRange[1],
+                    "value": d[colorVars[1]]
+                })
             })
-        })
-        //button group
-        const histogramGroup = svg.selectAll(".histogramGroups" + myClass)
-            .data(histogramData)
-            .join(function(group){
-                var enter = group.append("g").attr("class","histogramGroups" + myClass);
-                enter.append("rect").attr("class","histogramBar");
-                return enter;
-            });
+            //button group
+            const histogramGroup = svg.selectAll(".histogramGroups" + myClass)
+                .data(histogramData)
+                .join(function(group){
+                    var enter = group.append("g").attr("class","histogramGroups" + myClass);
+                    enter.append("rect").attr("class","histogramBar");
+                    enter.append("text").attr("class","histogramText");
+                    return enter;
+                });
 
-        histogramGroup.select(".histogramBar")
-            .attr("x", d => xScale(d.binVal) + margins.left)
-            .attr("y", d => yScale(d.value) + margins.top)
-            .attr("width", xScale.bandwidth())
-            .attr("height", d =>  yScale(0) - yScale(d.value))
-            .style("fill", d => d.fill)
-            .style("opacity", 0.4)
+            histogramGroup.select(".histogramBar")
+                .attr("x", d => d.position === "left" ? (width/2) - (pyramidGap/2) : (width/2) + (pyramidGap/2))
+                .attr("y", d => yScale(d.binVal) + margins.top + 5)
+                .attr("width", 0)
+                .attr("height", yScale.bandwidth() - 10)
+                .style("fill", d => d.fill)
+                .transition()
+                .duration(1000)
+                .attr("x", d => d.position === "left" ? (width/2) - (pyramidGap/2) - xScale(d.value) : (width/2) + (pyramidGap/2))
+                .attr("width", d => xScale(d.value));
+
+            histogramGroup.select(".histogramText")
+                .attr("x", d => d.position === "left" ? (width/2) - (pyramidGap/2) - 3 : (width/2) + (pyramidGap/2) + 3)
+                .attr("text-anchor", d => d.position === "left" ? "end" : "start")
+                .attr("y", d => yScale(d.binVal) + margins.top + 8 + ( yScale.bandwidth() - 10)/2)
+                .attr("height", yScale.bandwidth() - 10)
+                .text(d => d3.format(myFormat)(d.value))
+                .transition()
+                .duration(1000)
+                .attr("x", d => d.position === "left" ? (width/2) - (pyramidGap/2) - xScale(d.value) - 3 : (width/2) + (pyramidGap/2) + 3 + xScale(d.value))
+        }
 
 
+        function drawFilterButtons(myFilterSet, buttonY, buttonFill, buttonClass,buttonWidth){
+            //button group
+            const filterButtonGroup = svg.selectAll(".filterButtonGroup" + buttonClass)
+                .data(myFilterSet)
+                .join(function(group){
+                    var enter = group.append("g").attr("class","filterButtonGroup" + buttonClass);
+                    enter.append("rect").attr("class","pyramidFilterButtonRect");
+                    enter.append("text").attr("class","pyramidFilterButtonText");
+                    return enter;
+                });
+
+            filterButtonGroup.select(".pyramidFilterButtonRect")
+                .attr("opacity", (d,i) => i === 0 ? 1 : 0.2)
+                .style("cursor","pointer")
+                .attr("id",buttonClass)
+                .attr("width",buttonWidth)
+                .attr("height",20)
+                .attr("x",(d,i) =>  ((buttonWidth+5) * i) + ((width - ((buttonWidth + 5) * myFilterSet.length)-5)/2))
+                .attr("y",buttonY)
+                .attr("rx",5)
+                .attr("ry",5)
+                .attr("fill",buttonFill)
+                .on("click",function(event,d){
+                    var myIndex = -1;
+                    if(this.id === myClass + "_0"){
+                        myIndex = filterSet.findIndex(f => f === d);
+                        currentFilter = d;
+                    } else {
+                        currentFilter2 = d;
+                        myIndex = filterSet2.findIndex(f => f === d);
+                    }
+                    d3.selectAll(".pyramidFilterButtonRect#" + this.id).attr("opacity", (d,i) => i === myIndex ? 1 : 0.2);
+                    d3.selectAll(".pyramidFilterButtonText#" + this.id).attr("opacity", (d,i) => i === myIndex ? 1 : 0.2);
+                    filteredData = JSON.parse(JSON.stringify(myData)).filter(f => f[filterBy].toUpperCase() === currentFilter);
+                    filteredData = filteredData.filter(f => f[filterBy2] === currentFilter2);
+                    redrawPyramid();
+                });
+
+            filterButtonGroup.select(".pyramidFilterButtonText")
+                .attr("id",buttonClass)
+                .style("pointer-events","none")
+                .attr("opacity", (d,i) => i === 0 ? 1 : 0.2)
+                .attr("text-anchor","middle")
+                .attr("fill","white")
+                .attr("x",(d,i) =>  (buttonWidth/2) + ((buttonWidth+5) * i) + ((width - ((buttonWidth + 5) * myFilterSet.length)-5)/2))
+                .attr("y", (20/2) + 4.5 + buttonY)
+                .text(d => d);
+
+        }
     }
 
     my.width = function(value) {
@@ -771,6 +901,12 @@ function histogramChart() {
     my.filterBy = function(value) {
         if (!arguments.length) return filterBy;
         filterBy = value;
+        return my;
+    };
+
+    my.filterBy2 = function(value) {
+        if (!arguments.length) return filterBy2;
+        filterBy2 = value;
         return my;
     };
 

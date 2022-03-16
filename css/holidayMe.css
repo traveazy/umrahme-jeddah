@@ -84,6 +84,12 @@ body{
   text-transform: uppercase;
 }
 
+.largerTitle{
+  font-size: 1.4em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .legendNumber {
   font-size: 0.9em;
   fill: #707070;
@@ -99,4 +105,25 @@ body{
 
 .backgroundBar{
   fill: #F0F0F0;
+}
+
+.axis text{
+  font-size: 1.2em;
+}
+.axis line {
+  display: none;
+}
+.axis path {
+  stroke: #D0D0D0;
+}
+.histogramText{
+  font-size: 1.2em;
+}
+.midAxis .tick text {
+  font-size: 1.4em;
+}
+
+
+.midAxis line,.midAxis path {
+  display: none;
 }

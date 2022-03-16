@@ -1,74 +1,170 @@
 [
   {
-    "Rating": "1 & 2",
+    "Rating": "1 and 2",
     "Makkah": 0.64,
     "Madinah": 0.7,
-    "Season": "2019-2020"
+    "Season": "2019-2020",
+    "Category": "Booking Value"
   },
   {
     "Rating": "3",
     "Makkah": 0.12,
     "Madinah": 0.06,
-    "Season": "2019-2020"
+    "Season": "2019-2020",
+    "Category": "Booking Value"
   },
   {
     "Rating": "4",
     "Makkah": 0.2,
     "Madinah": 0.01,
-    "Season": "2019-2020"
+    "Season": "2019-2020",
+    "Category": "Booking Value"
   },
   {
     "Rating": "5",
     "Makkah": 0.05,
     "Madinah": 0.23,
-    "Season": "2019-2020"
+    "Season": "2019-2020",
+    "Category": "Booking Value"
   },
   {
-    "Rating": "1 & 2",
+    "Rating": "1 and 2",
     "Makkah": 0,
     "Madinah": 0,
-    "Season": "2020-2021"
+    "Season": "2020-2021",
+    "Category": "Booking Value"
   },
   {
     "Rating": "3",
     "Makkah": 0.16,
     "Madinah": 0.29,
-    "Season": "2020-2021"
+    "Season": "2020-2021",
+    "Category": "Booking Value"
   },
   {
     "Rating": "4",
     "Makkah": 0.24,
     "Madinah": 0.19,
-    "Season": "2020-2021"
+    "Season": "2020-2021",
+    "Category": "Booking Value"
   },
   {
     "Rating": "5",
     "Makkah": 0.6,
     "Madinah": 0.52,
-    "Season": "2020-2021"
+    "Season": "2020-2021",
+    "Category": "Booking Value"
   },
   {
-    "Rating": "1 & 2",
+    "Rating": "1 and 2",
     "Makkah": 0.01,
     "Madinah": 0.18,
-    "Season": "2021-2022"
+    "Season": "2021-2022",
+    "Category": "Booking Value"
   },
   {
     "Rating": "3",
     "Makkah": 0.33,
     "Madinah": 0.41,
-    "Season": "2021-2022"
+    "Season": "2021-2022",
+    "Category": "Booking Value"
   },
   {
     "Rating": "4",
     "Makkah": 0.14,
     "Madinah": 0.07,
-    "Season": "2021-2022"
+    "Season": "2021-2022",
+    "Category": "Booking Value"
   },
   {
     "Rating": "5",
     "Makkah": 0.52,
     "Madinah": 0.34,
-    "Season": "2021-2022"
+    "Season": "2021-2022",
+    "Category": "Booking Value"
+  },
+  {
+    "Rating": "1 and 2",
+    "Makkah": 0.73,
+    "Madinah": 0.97,
+    "Season": "2019-2020",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "3",
+    "Makkah": 0.09,
+    "Madinah": 0.02,
+    "Season": "2019-2020",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "4",
+    "Makkah": 0.17,
+    "Madinah": 0,
+    "Season": "2019-2020",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "5",
+    "Makkah": 0.01,
+    "Madinah": 0.01,
+    "Season": "2019-2020",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "1 and 2",
+    "Makkah": 0,
+    "Madinah": 0,
+    "Season": "2020-2021",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "3",
+    "Makkah": 0.31,
+    "Madinah": 0.44,
+    "Season": "2020-2021",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "4",
+    "Makkah": 0.39,
+    "Madinah": 0.2,
+    "Season": "2020-2021",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "5",
+    "Makkah": 0.29,
+    "Madinah": 0.35,
+    "Season": "2020-2021",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "1 and 2",
+    "Makkah": 0.03,
+    "Madinah": 0.28,
+    "Season": "2021-2022",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "3",
+    "Makkah": 0.53,
+    "Madinah": 0.52,
+    "Season": "2021-2022",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "4",
+    "Makkah": 0.2,
+    "Madinah": 0.09,
+    "Season": "2021-2022",
+    "Category": "Room Nights"
+  },
+  {
+    "Rating": "5",
+    "Makkah": 0.24,
+    "Madinah": 0.12,
+    "Season": "2021-2022",
+    "Category": "Room Nights"
   }
 ]

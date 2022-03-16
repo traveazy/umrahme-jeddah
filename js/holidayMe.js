@@ -66,8 +66,8 @@ function drawCharts(divId,mapData,chartData){
     }
     if(currentChart.type === "globe"){
         drawGlobe(divId,mapData,currentChart);
-    } else if (currentChart.type === "histogram"){
-        drawHistogram(divId,currentChart);
+    } else if (currentChart.type === "pyramid"){
+        drawPyramid(divId,currentChart);
     } else if (currentChart.type === "map_bar"){
         drawMapBar(divId,mapData,currentChart);
     }
@@ -117,13 +117,13 @@ function drawGlobe(divId,topoData,currentChart){
 }
 
 
-function drawHistogram(divId,currentChart){
+function drawPyramid(divId,currentChart){
 
     var svg = d3.select("." + divId + "_svg");
     var width = +svg.attr("width");
     var height = +svg.attr("height");
 
-    var my_chart = histogramChart()
+    var my_chart = pyramidChart()
         .width(width)
         .height(height)
         .myData(currentChart.data)
@@ -132,7 +132,8 @@ function drawHistogram(divId,currentChart){
         .colorVars(currentChart.colorVars)
         .binVar(currentChart.binVar)
         .myFormat(currentChart.format)
-        .filterBy(currentChart.filterBy);
+        .filterBy(currentChart.filterBy)
+        .filterBy2(currentChart.filterBy2);
 
     my_chart(svg);
 }
