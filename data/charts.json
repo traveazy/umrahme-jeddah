@@ -2,7 +2,7 @@
   {"id": 1,"name": "top 5","title": "Top 5 Countries by Revenue","type": "map_bar",  "colorRange": ["#d1f3f2","#19C5BD"],"colorVar": "Revenue","format": ".0%", "filterBy": "Season"},
   {"id": 2,"name": "passengers","title": "Mu'tamir Booked with Umrahme","type": "globe",  "colorRange": ["#e2d6eb","#4C1088"],"colorVar": "Booked","format": ",", "filterBy": ""},
   {"id": 3,"name": "bookings","title": "Highest Booked Hotel Category","type": "pyramid","colorRange": ["#FFA800","#19C5BD"],"colorVars": ["Makkah","Madinah"],"binVar": "Rating" ,"format": ".0%", "filterBy": "Category","filterBy2": "Season"},
-   {"id":4,"name": "transport","title": "Transportation Types | Booking Value","type": "bar"},
+   {"id":4,"name": "transport","title": "Transportation Types | Booking Value","type": "bar", "filterBy": "Category","color": "#4C1088","format": ".0%"},
   {"id": 5,"name": "growth","title": "Umrahme Company Growth","type": "area"},
   {"id": 6,"name": "social","title": "TBC social related??","type": "wordcloud"},
   {"id": 7,"name": "traffic","title": "Website Traffic","type": "heatmap"},

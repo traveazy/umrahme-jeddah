@@ -70,6 +70,8 @@ function drawCharts(divId,mapData,chartData){
         drawPyramid(divId,currentChart);
     } else if (currentChart.type === "map_bar"){
         drawMapBar(divId,mapData,currentChart);
+    } else if (currentChart.type === "bar"){
+        drawBar(divId,currentChart);
     }
 }
 
@@ -94,6 +96,25 @@ function drawMapBar(divId,topoData,currentChart){
     my_chart(svg);
 }
 
+
+function drawBar(divId,currentChart){
+
+    var svg = d3.select("." + divId + "_svg");
+    var width = +svg.attr("width");
+    var height = +svg.attr("height");
+
+    var my_chart = barChart()
+        .width(width)
+        .height(height)
+        .myData(currentChart.data)
+        .myClass(divId)
+        .myColor(currentChart.color)
+        .legendVar(currentChart.name)
+        .myFormat(currentChart.format)
+        .filterBy(currentChart.filterBy);
+
+    my_chart(svg);
+}
 
 function drawGlobe(divId,topoData,currentChart){
 

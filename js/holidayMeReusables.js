@@ -1005,6 +1005,178 @@ function buttonChart() {
     return my;
 }
 
+
+function barChart() {
+    //REUSABLE bar Chart
+
+    var myData = [],
+        myClass="",
+        width = 0,
+        height = 0,
+        margins = {"left":50,"right":10,"top":50,"bottom":30,"middle":50};
+
+
+    function my(svg) {
+
+        const brushHeight = 50;
+        myData.map(m => m.fullDate = convertDate(m.Date));
+        myData = myData.filter(f => f.Vehicle === 'Bus');
+        myData = myData.sort((a,b) => d3.ascending(a.fullDate,b.fullDate));
+        myData.map(m => m.monthCount = d3.timeMonth.count(myData[0].fullDate, m.fullDate));
+
+        const xExtent = d3.extent(myData, d => d.fullDate);
+        const xScaleBrush = d3.scaleTime().domain(xExtent).range([0,width - margins.left - margins.right]);
+        let xScaleChart = d3.scaleTime().domain(xExtent).range([0,width - margins.left - margins.right]);
+        const monthsInvolved = d3.timeMonth.count(xExtent[0],xExtent[1]) + 1;
+        const xScaleBarBrush = d3.scaleBand().domain(d3.range(0,monthsInvolved,1)).range([0,width - margins.left - margins.right]);
+        const xScaleBarChart = d3.scaleBand().domain(d3.range(0,monthsInvolved,1)).range([0,width - margins.left - margins.right]);
+        const yScaleBrush = d3.scaleLinear().domain(d3.extent(myData, d => d.Value)).range([brushHeight,0]);
+        const yScaleChart = d3.scaleLinear().domain(d3.extent(myData, d => d.Value)).range([height - brushHeight - margins.top - margins.middle - margins.bottom,0]);
+
+        const brush = d3.brushX()
+            .extent([[0, 0], [width - margins.right-margins.left, brushHeight]])
+            .on("end", brushed);
+
+        //non data elements
+        if(d3.select(".clipPath" + myClass)._groups[0][0] === null) {
+            svg.append("clipPath").attr("class","clipPath" + myClass)
+                .attr("id","mapClipPath")
+                .append('rect').attr('class', 'clipRect' + myClass);
+            svg.append("g").attr("class"," brushGroup" + myClass);
+            svg.append("g").attr("class","brushAxis xAxisBrush" + myClass);
+            svg.append("g").attr("class","brushAxis xAxisChart" + myClass);
+            svg.append("g").attr("class","brushAxis yAxisChart" + myClass);
+        }
+
+        d3.select(".brushGroup" + myClass)
+            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - brushHeight) + ")")
+            .call(brush)
+            .call(brush.move, [0,width - margins.right-margins.left]);
+
+        d3.select(".xAxisBrush" + myClass)
+            .call(d3.axisBottom(xScaleBrush).tickSizeOuter(0))
+            .attr("transform","translate(" + margins.left + "," + (height - margins.bottom) + ")");
+
+        d3.select(".yAxisChart" + myClass)
+            .call(d3.axisLeft(yScaleChart).tickSizeOuter(0).tickFormat(d => d > 0 ? d3.format(myFormat)(d):  ""))
+            .attr("transform","translate(" + margins.left + "," + margins.top + ")");
+
+        //button group
+        const brushBarGroup = svg.selectAll(".brushBarGroup" + myClass)
+            .data(myData)
+            .join(function(group){
+                var enter = group.append("g").attr("class","brushBarGroup" + myClass);
+                enter.append("rect").attr("class","brushBar");
+                return enter;
+            });
+
+        brushBarGroup.select(".brushBar")
+            .attr("x",d => margins.left + xScaleBarBrush(d.monthCount))
+            .attr("y",d => yScaleBrush(d.Value) + (height - margins.bottom - brushHeight))
+            .attr("width",xScaleBarBrush.bandwidth()-1)
+            .attr("height", d => yScaleBrush(yScaleBrush.domain()[0]) - yScaleBrush(d.Value))
+            .attr("fill",myColor);
+
+        function brushed(event) {
+            let extent = event.selection.map(xScaleBrush.invert, xScaleBrush);
+            extent[0] = new Date(extent[0].getFullYear(),extent[0].getMonth(),1);
+            extent[1] = new Date(extent[1].getFullYear(),extent[1].getMonth(),1);
+            xScaleChart.domain(extent);
+            const filteredMonthsInvolved = d3.timeMonth.count(extent[0],extent[1]) + 1;
+            xScaleBarChart.domain(d3.range(0,filteredMonthsInvolved,1));
+            let filteredBarData = JSON.parse(JSON.stringify(myData));
+            filteredBarData.map(m => m.fullDate = new Date(m.fullDate));
+            filteredBarData = filteredBarData.filter(f => f.fullDate >= extent[0] && f.fullDate <= extent[1]);
+            filteredBarData.map(m => m.monthCount = d3.timeMonth.count(filteredBarData[0].fullDate, m.fullDate));
+            drawChartBar(filteredBarData,1000)
+        }
+
+
+        drawChartBar(myData,0);
+
+        function drawChartBar(filteredBarData,transitionTime){
+
+            d3.select(".xAxisChart" + myClass)
+                .transition()
+                .duration(transitionTime)
+                .call(d3.axisBottom(xScaleChart).tickSizeOuter(0))
+                .attr("transform","translate(" + margins.left + "," + (height - margins.bottom - margins.middle - brushHeight) + ")")
+
+            //button group
+            const chartBarData = svg.selectAll(".chartBarGroup" + myClass)
+                .data(filteredBarData, d => d.monthCount)
+                .join(function(group){
+                    var enter = group.append("g").attr("class","chartBarGroup" + myClass);
+                    enter.append("rect").attr("class","chartBar");
+                    return enter;
+                });
+
+            chartBarData.select(".chartBar")
+                .attr("x",d => margins.left + xScaleBarChart(d.monthCount))
+                .attr("y",d => yScaleChart(d.Value) + margins.top)
+                .attr("width",xScaleBarChart.bandwidth()-1)
+                .attr("height", d => yScaleChart(yScaleChart.domain()[0]) - yScaleChart(d.Value))
+                .attr("fill",myColor);
+
+        }
+
+        function convertDate(myDate){
+            const dateSplit = myDate.split("/");
+            return new Date(dateSplit[2],+dateSplit[1]-1,dateSplit[0]);
+        }
+    }
+
+    my.width = function(value) {
+        if (!arguments.length) return width;
+        width = value;
+        return my;
+    };
+
+    my.height = function(value) {
+        if (!arguments.length) return height;
+        height = value;
+        return my;
+    };
+
+    my.myData = function(value) {
+        if (!arguments.length) return myData;
+        myData = value;
+        return my;
+    };
+
+    my.myClass = function(value) {
+        if (!arguments.length) return myClass;
+        myClass = value;
+        return my;
+    };
+
+    my.myColor = function(value) {
+        if (!arguments.length) return myColor;
+        myColor = value;
+        return my;
+    };
+
+    my.legendVar = function(value) {
+        if (!arguments.length) return legendVar;
+        legendVar = value;
+        return my;
+    };
+
+    my.myFormat = function(value) {
+        if (!arguments.length) return myFormat;
+        myFormat = value;
+        return my;
+    };
+
+    my.filterBy = function(value) {
+        if (!arguments.length) return filterBy;
+        filterBy = value;
+        return my;
+    };
+
+
+    return my;
+}
 function getButtonOpacity(d){
 
     if(holidayMe.selectedButton === d){

@@ -110,10 +110,10 @@ body{
 .axis text{
   font-size: 1.2em;
 }
-.axis line {
+.axis line,.brushAxis line {
   display: none;
 }
-.axis path {
+.axis path ,.brushAxis path{
   stroke: #D0D0D0;
 }
 .histogramText{
