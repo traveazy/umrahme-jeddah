@@ -418,6 +418,8 @@ function mapBarChart() {
         drawMapBar();
 
         function drawMapBar(){
+
+            filteredData = filteredData.sort((a,b) => d3.descending(+a[colorVar],+b[colorVar]));
             colorExtent = d3.extent(filteredData, d => +d[colorVar]);
             colorScale = d3.scaleLinear().domain(colorExtent).range(colorRange);
 
@@ -439,22 +441,22 @@ function mapBarChart() {
 
             pathGroup.select(".mapPath")
                 .attr('clip-path', 'url(#mapClipPath)')
-                .attr("id",d => d.properties.name)
+                .attr("id",d => d.properties.name.toLowerCase())
                 .style("fill", d => filteredData.find(f => f.Country === d.properties.name) === undefined ? "white":colorScale(+filteredData.find(f => f.Country === d.properties.name)[colorVar]))
                 .style("stroke", "#ccc")
                 .style("stroke-width", "0.3px")
                 .attr("d", path)
                 .on("mousemove",function(event,d){
-                    var tooltipText = "<strong># OF " + legendVar.toUpperCase() + "</strong><br>";
+                    var tooltipText = "";
                     if(filteredData.find(f => f.Country === d.properties.name) === undefined){
-                        if(filteredData.find(f => f.Country === "Rest of the World") !== undefined){
-                            tooltipText += "Rest of World: " + numberFormat(filteredData.find(f => f.Country === "Rest of the World")[colorVar]) + "<br>";
-                        }
-                    } else {
-                        tooltipText += d.properties.name + ": " + numberFormat(filteredData.find(f => f.Country === d.properties.name)[colorVar]) + "<br>";
 
+                        tooltipText += "REST OF WORLD<br>" + numberFormat(1 - d3.sum(filteredData, d => +d[colorVar]));
+                    } else {
+                        tooltipText +="<strong>" + d.properties.name.toUpperCase() + "</strong><br>";
+                        tooltipText +=  numberFormat(filteredData.find(f => f.Country === d.properties.name)[colorVar]);
+                        d3.selectAll(".hBarGroup" + myClass).attr("opacity",0.1);
+                        d3.selectAll("#" + d.properties.name.toLowerCase()).attr("opacity",1);
                     }
-                    tooltipText += "<span id='grey'><i>(Total: " + numberFormat(d3.sum(filteredData, d => +d[colorVar])) + ")</i></span>";
                     d3.select("#tooltip")
                         .style("visibility","visible")
                         .style("top",event.pageY + "px")
@@ -462,8 +464,80 @@ function mapBarChart() {
                         .html(tooltipText);
                 })
                 .on("mouseout",function(event,d){
+                    d3.selectAll(".hBarGroup" + myClass).attr("opacity",1);
                     d3.select("#tooltip").style("visibility","hidden");
+                });
+
+
+            const xScale = d3.scaleLinear().domain([0,colorExtent[1]]).range([0,70]);
+            const hBarHeight = 30;
+            //bars group
+            const hBarGroup = svg.selectAll(".hBarGroup" + myClass)
+                .data(filteredData)
+                .join(function(group){
+                    var enter = group.append("g").attr("class","hBarGroup" + myClass);
+                    enter.append("rect").attr("class","backgroundBar");
+                    enter.append("text").attr("class","dataPosition");
+                    enter.append("svg:image").attr("class","dataFlag");
+                    enter.append("text").attr("class","countryName");
+                    enter.append("rect").attr("class","dataBar");
+                    enter.append("text").attr("class","valueLabel");
+                    return enter;
+                });
+
+            hBarGroup
+                .attr("id", d => d.Country.toLowerCase())
+                .attr("transform", "translate(10," + ((height - 10 + 50 - mapHeight)/2) + ")")
+                .on("mouseover",function(event,d){
+                    d3.selectAll(".hBarGroup" + myClass).attr("opacity",0.1);
+                    d3.selectAll(".mapPath").attr("opacity",0.1);
+                    d3.selectAll("#" + d.Country.toLowerCase()).attr("opacity",1);
                 })
+                .on("mouseout",function(){
+                    d3.selectAll(".mapPath").attr("opacity",1);
+                    d3.selectAll(".hBarGroup" + myClass).attr("opacity",1);
+                });
+
+            hBarGroup.select(".backgroundBar")
+                .attr("y",(d,i) => (i * hBarHeight))
+                .attr("width",width - 40 - mapWidth)
+                .attr("height",25);
+
+            hBarGroup.select(".dataPosition")
+                .style("pointer-events","none")
+                .attr("x",5)
+                .attr("y",(d,i) => (i * hBarHeight) + 18)
+                .text((d,i) => i + 1);
+
+            hBarGroup.select(".dataFlag")
+                .style("pointer-events","none")
+                .attr("x",20)
+                .attr("y",(d,i) => (i * hBarHeight) + 7)
+                .attr("width",20)
+                .attr("height",12)
+                .attr("xlink:href", d => "flags/" + d.Country + ".png");
+
+            hBarGroup.select(".countryName")
+                .style("pointer-events","none")
+                .attr("x",75)
+                .attr("text-anchor","middle")
+                .attr("y",(d,i) => (i * hBarHeight) + 17)
+                .text((d,i) => d.Country);
+
+            hBarGroup.select(".dataBar")
+                .style("pointer-events","none")
+                .attr("x",110)
+                .attr("y",(d,i) => (i * hBarHeight) + 2.5)
+                .attr("width",d => xScale(+d[colorVar]))
+                .attr("height",20)
+                .attr("fill", d => colorScale(+d[colorVar]));
+
+            hBarGroup.select(".valueLabel")
+                .style("pointer-events","none")
+                .attr("x",d => 114 + xScale(+d[colorVar]))
+                .attr("y",(d,i) => (i * hBarHeight) + 17)
+                .text((d,i) => numberFormat(+d[colorVar]));
+
         }
 
 

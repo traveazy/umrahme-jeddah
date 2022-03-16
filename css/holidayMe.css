@@ -78,7 +78,7 @@ body{
   margin-right: 80px;
 }
 
-.legendTitle{
+.legendTitle, .dataPosition{
   font-size: 1.2em;
   font-weight: bold;
   text-transform: uppercase;
@@ -89,6 +89,14 @@ body{
   fill: #707070;
 }
 
+.valueLabel{
+  font-size: 0.9em;
+  fill: #707070;
+}
 .clickableGlobeItem {
   cursor: pointer;
+}
+
+.backgroundBar{
+  fill: #F0F0F0;
 }
