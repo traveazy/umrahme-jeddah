@@ -1,0 +1,94 @@
+body{
+  font-family: Arial;
+  font-weight: 500;
+  font-size: 12px;
+  margin:0;
+  padding: 0;
+  background-color: white;
+}
+
+#headerDiv{
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 12vh;
+  width: 100vw;
+  height:12vh;
+}
+#buttonsDiv{
+  height: 70px;
+  width: 100vw;
+}
+#chartDiv{
+  position: absolute;
+  left: 12vw;
+  top: calc(12vh + 70px);
+  float: left;
+  background-color:  transparent;
+  width: calc(100vw - 24vw);
+  height: calc(100vh - 24vh - 30px);
+}
+
+.buttonText{
+  fill: white;
+  text-transform: capitalize;
+  pointer-events: none;
+}
+
+.buttonRect, .mapPath{
+  cursor: pointer;
+}
+
+.filterButtonRect{
+  fill: #F0F0F0;
+  stroke: #707070;
+  cursor: pointer;
+}
+
+.filterButtonText{
+  text-transform: capitalize;
+  pointer-events: none;
+  font-size: 0.8em;
+  fill: #707070;
+}
+#market{
+  fill: #3091BE;
+}
+
+#umrahme{
+  fill: #4C1088
+}
+
+#grey{
+  color: #707070;
+}
+
+#tooltip{
+  visibility: hidden;
+  border: 1px solid grey;
+  border-radius: 4px;
+  position: absolute;
+  text-align: center;
+  padding: 3px;
+  background: white;
+  pointer-events: none;
+  font-size: 0.8em;
+  width: auto;
+  height: auto;
+  margin-right: 80px;
+}
+
+.legendTitle{
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.legendNumber {
+  font-size: 0.9em;
+  fill: #707070;
+}
+
+.clickableGlobeItem {
+  cursor: pointer;
+}

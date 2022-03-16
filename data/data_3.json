@@ -1,0 +1,74 @@
+[
+  {
+    "Rating": "1 & 2",
+    "Makkah": 0.64,
+    "Madinah": 0.7,
+    "Season": "2019-2020"
+  },
+  {
+    "Rating": "3",
+    "Makkah": 0.12,
+    "Madinah": 0.06,
+    "Season": "2019-2020"
+  },
+  {
+    "Rating": "4",
+    "Makkah": 0.2,
+    "Madinah": 0.01,
+    "Season": "2019-2020"
+  },
+  {
+    "Rating": "5",
+    "Makkah": 0.05,
+    "Madinah": 0.23,
+    "Season": "2019-2020"
+  },
+  {
+    "Rating": "1 & 2",
+    "Makkah": 0,
+    "Madinah": 0,
+    "Season": "2020-2021"
+  },
+  {
+    "Rating": "3",
+    "Makkah": 0.16,
+    "Madinah": 0.29,
+    "Season": "2020-2021"
+  },
+  {
+    "Rating": "4",
+    "Makkah": 0.24,
+    "Madinah": 0.19,
+    "Season": "2020-2021"
+  },
+  {
+    "Rating": "5",
+    "Makkah": 0.6,
+    "Madinah": 0.52,
+    "Season": "2020-2021"
+  },
+  {
+    "Rating": "1 & 2",
+    "Makkah": 0.01,
+    "Madinah": 0.18,
+    "Season": "2021-2022"
+  },
+  {
+    "Rating": "3",
+    "Makkah": 0.33,
+    "Madinah": 0.41,
+    "Season": "2021-2022"
+  },
+  {
+    "Rating": "4",
+    "Makkah": 0.14,
+    "Madinah": 0.07,
+    "Season": "2021-2022"
+  },
+  {
+    "Rating": "5",
+    "Makkah": 0.52,
+    "Madinah": 0.34,
+    "Season": "2021-2022"
+  }
+]

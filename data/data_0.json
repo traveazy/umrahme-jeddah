@@ -1,0 +1,136 @@
+[{"Country": "Saudi Arabia","Count": 3906},{"Country": "Egypt","Count": 1687},{"Country": "Pakistan","Count": 1352},
+ {"Country": "India","Count": 588
+},
+ {
+   "Country": "Bangladesh",
+   "Count": 577
+ },
+ {
+   "Country": "Indonesia",
+   "Count": 456
+ },
+ {
+   "Country": "Algeria",
+   "Count": 321
+ },
+ {
+   "Country": "United Arab Emirates",
+   "Count": 291
+ },
+ {
+   "Country": "Morocco",
+   "Count": 284
+ },
+ {
+   "Country": "Jordan",
+   "Count": 245
+ },
+ {
+   "Country": "Turkey",
+   "Count": 186
+ },
+ {
+   "Country": "Libya",
+   "Count": 136
+ },
+ {
+   "Country": "United Kingdom",
+   "Count": 129
+ },
+ {
+   "Country": "Yemen",
+   "Count": 124
+ },
+ {
+   "Country": "Nigeria",
+   "Count": 122
+ },
+ {
+   "Country": "Sudan",
+   "Count": 121
+ },
+ {
+   "Country": "Malaysia",
+   "Count": 104
+ },
+ {
+   "Country": "United States",
+   "Count": 89
+ },
+ {
+   "Country": "Iraq",
+   "Count": 86
+ },
+ {
+   "Country": "Tunisia",
+   "Count": 76
+ },
+ {
+   "Country": "France",
+   "Count": 64
+ },
+ {
+   "Country": "South Africa",
+   "Count": 62
+ },
+ {
+   "Country": "Senegal",
+   "Count": 51
+ },
+ {
+   "Country": "Kuwait",
+   "Count": 46
+ },
+ {
+   "Country": "Sri Lanka",
+   "Count": 40
+ },
+ {
+   "Country": "Kenya",
+   "Count": 37
+ },
+ {
+   "Country": "Germany",
+   "Count": 36
+ },
+ {
+   "Country": "Afghanistan",
+   "Count": 36
+ },
+ {
+   "Country": "Singapore",
+   "Count": 28
+ },
+ {
+   "Country": "Palestine",
+   "Count": 25
+ },
+ {"Country": "Mauritania",
+   "Count": 24
+ },{"Country": "Lebanon",
+   "Count": 23},
+ {
+   "Country": "Kyrgyzstan",
+   "Count": 23
+ },
+ {
+   "Country": "Russia",
+   "Count": 20
+ },
+ {
+   "Country": "Qatar",
+   "Count": 20
+ },
+ {
+   "Country": "Bahrain",
+   "Count": 20
+ },
+ {
+   "Country": "Australia",
+   "Count": 20
+ },
+ {
+   "Country": "Rest of the World",
+   "Count": 935
+ }
+]

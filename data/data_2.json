@@ -1,0 +1,290 @@
+[
+  {
+    "Country": "Pakistan",
+    "Booked": 709776
+  },
+  {
+    "Country": "Indonesia",
+    "Booked": 386104
+  },
+  {
+    "Country": "Egypt",
+    "Booked": 344033
+  },
+  {
+    "Country": "Turkey",
+    "Booked": 301771
+  },
+  {
+    "Country": "India",
+    "Booked": 226405
+  },
+  {
+    "Country": "Jordan",
+    "Booked": 214741
+  },
+  {
+    "Country": "Bangladesh",
+    "Booked": 212822
+  },
+  {
+    "Country": "Iraq",
+    "Booked": 149562
+  },
+  {
+    "Country": "Algeria",
+    "Booked": 117495
+  },
+  {
+    "Country": "Yemen",
+    "Booked": 98413
+  },
+  {
+    "Country": "Kuwait",
+    "Booked": 86299
+  },
+  {
+    "Country": "United Arab Emirates",
+    "Booked": 46349
+  },
+  {
+    "Country": "Morocco",
+    "Booked": 42078
+  },
+  {
+    "Country": "Palestine",
+    "Booked": 31342
+  },
+  {
+    "Country": "Malaysia",
+    "Booked": 30813
+  },
+  {
+    "Country": "Nigeria",
+    "Booked": 26736
+  },
+  {
+    "Country": "South Africa",
+    "Booked": 23994
+  },
+  {
+    "Country": "Germany",
+    "Booked": 19352
+  },
+  {
+    "Country": "Libya",
+    "Booked": 19261
+  },
+  {
+    "Country": "France",
+    "Booked": 19006
+  },
+  {
+    "Country": "Kyrgyzstan",
+    "Booked": 18505
+  },
+  {
+    "Country": "Sudan",
+    "Booked": 15209
+  },
+  {
+    "Country": "United States",
+    "Booked": 14856
+  },
+  {
+    "Country": "Kazakhstan",
+    "Booked": 14161
+  },
+  {
+    "Country": "Sri Lanka",
+    "Booked": 13815
+  },
+  {
+    "Country": "Albania",
+    "Booked": 13689
+  },
+  {
+    "Country": "Australia",
+    "Booked": 12490
+  },
+  {
+    "Country": "Afghanistan",
+    "Booked": 12024
+  },
+  {
+    "Country": "Bahrain",
+    "Booked": 11013
+  },
+  {
+    "Country": "Tunisia",
+    "Booked": 8306
+  },
+  {
+    "Country": "Spain",
+    "Booked": 7717
+  },
+  {
+    "Country": "Iran",
+    "Booked": 7172
+  },
+  {
+    "Country": "Mauritius",
+    "Booked": 5958
+  },
+  {
+    "Country": "Japan",
+    "Booked": 5656
+  },
+  {
+    "Country": "Lebanon",
+    "Booked": 4013
+  },
+  {
+    "Country": "United Kingdom",
+    "Booked": 4008
+  },
+  {
+    "Country": "Azerbaijan",
+    "Booked": 3616
+  },
+  {
+    "Country": "Kenya",
+    "Booked": 2750
+  },
+  {
+    "Country": "Oman",
+    "Booked": 2181
+  },
+  {
+    "Country": "Singapore",
+    "Booked": 2161
+  },
+  {
+    "Country": "Serbia",
+    "Booked": 1828
+  },
+  {
+    "Country": "Thailand",
+    "Booked": 1325
+  },
+  {
+    "Country": "Maldives",
+    "Booked": 1298
+  },
+  {
+    "Country": "Austria",
+    "Booked": 1236
+  },
+  {
+    "Country": "Italy",
+    "Booked": 1186
+  },
+  {
+    "Country": "Senegal",
+    "Booked": 1142
+  },
+  {
+    "Country": "Russia",
+    "Booked": 1116
+  },
+  {
+    "Country": "Tajikistan",
+    "Booked": 1040
+  },
+  {
+    "Country": "Niger",
+    "Booked": 931
+  },
+  {
+    "Country": "Mauritania",
+    "Booked": 859
+  },
+  {
+    "Country": "Somalia",
+    "Booked": 810
+  },
+  {
+    "Country": "Norway",
+    "Booked": 699
+  },
+  {
+    "Country": "Belgium",
+    "Booked": 632
+  },
+  {
+    "Country": "El Salvador",
+    "Booked": 572
+  },
+  {
+    "Country": "Uganda",
+    "Booked": 548
+  },
+  {
+    "Country": "Qatar",
+    "Booked": 528
+  },
+  {
+    "Country": "Netherlands",
+    "Booked": 483
+  },
+  {
+    "Country": "Israel",
+    "Booked": 463
+  },
+  {
+    "Country": "Tanzania",
+    "Booked": 388
+  },
+  {
+    "Country": "Chad",
+    "Booked": 381
+  },
+  {
+    "Country": "Sweden",
+    "Booked": 367
+  },
+  {
+    "Country": "Philippines",
+    "Booked": 327
+  },
+  {
+    "Country": "Denmark",
+    "Booked": 319
+  },
+  {
+    "Country": "Côte d'Ivoire",
+    "Booked": 282
+  },
+  {
+    "Country": "Mali",
+    "Booked": 249
+  },
+  {
+    "Country": "Switzerland",
+    "Booked": 240
+  },
+  {
+    "Country": "Djibouti",
+    "Booked": 232
+  },
+  {
+    "Country": "Greece",
+    "Booked": 207
+  },
+  {
+    "Country": "Myanmar",
+    "Booked": 186
+  },
+  {
+    "Country": "Guinea",
+    "Booked": 148
+  },
+  {
+    "Country": "Syria",
+    "Booked": 134
+  },
+  {
+    "Country": "Rest of the World",
+    "Booked": 873
+  }
+]

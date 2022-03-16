@@ -1,0 +1,77 @@
+[
+  {
+    "Country": "Pakistan",
+    "Revenue": 0.2561,
+    "Season": "2019-2020"
+  },
+  {
+    "Country": "Egypt",
+    "Revenue": 0.14,
+    "Season": "2019-2020"
+  },
+  {
+    "Country": "Indonesia",
+    "Revenue": 0.14,
+    "Season": "2019-2020"
+  },
+  {
+    "Country": "Turkey",
+    "Revenue": 0.12,
+    "Season": "2019-2020"
+  },
+  {
+    "Country": "India",
+    "Revenue": 0.09,
+    "Season": "2019-2020"
+  },
+  {
+    "Country": "Libya",
+    "Revenue": 0.25,
+    "Season": "2020-2021"
+  },
+  {
+    "Country": "Nigeria",
+    "Revenue": 0.24,
+    "Season": "2020-2021"
+  },
+  {
+    "Country": "Indonesia",
+    "Revenue": 0.18,
+    "Season": "2020-2021"
+  },
+  {
+    "Country": "Iraq",
+    "Revenue": 0.09,
+    "Season": "2020-2021"
+  },
+  {
+    "Country": "Senegal",
+    "Revenue": 0.08,
+    "Season": "2020-2021"
+  },
+  {
+    "Country": "Iraq",
+    "Revenue": 0.32,
+    "Season": "2021-2022"
+  },
+  {
+    "Country": "Bangladesh",
+    "Revenue": 0.11,
+    "Season": "2021-2022"
+  },
+  {
+    "Country": "Indonesia",
+    "Revenue": 0.08,
+    "Season": "2021-2022"
+  },
+  {
+    "Country": "Malaysia",
+    "Revenue": 0.06,
+    "Season": "2021-2022"
+  },
+  {
+    "Country": "Turkey",
+    "Revenue": 0.04,
+    "Season": "2021-2022"
+  }
+]
