@@ -114,6 +114,7 @@ body{
 
 .axis text{
   font-size: 1.2em;
+  font-family: 'Open Sans', sans-serif;
 }
 .axis line,.brushAxis line {
   display: none;
@@ -126,8 +127,12 @@ body{
 }
 .midAxis .tick text {
   font-size: 1.4em;
+  font-family: 'Open Sans', sans-serif;
 }
 
+.brushAxis .tick text {
+  font-family: 'Open Sans', sans-serif;
+}
 
 .midAxis line,.midAxis path {
   display: none;
