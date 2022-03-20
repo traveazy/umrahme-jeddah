@@ -1,72 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Holiday Me App</title>
+    <title>Umrahme | Jeddah</title>
     <link rel="stylesheet" href="css/holidayMe.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script src="https://kit.fontawesome.com/c073ebcd4d.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://d3js.org/d3.v6.min.js" type="text/javascript"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="lib/d3.json" type="text/javascript"></script>
+
 </head>
 <body>
-<div id="headerDiv"> My Title</div>
-<div id="buttonsDiv"></div>
-<div id="chartDiv"></div>
-<div id="tooltip"></div>
-<script type="text/javascript" src="js/holidayMe.js"></script>
-<script type="text/javascript" src="js/holidayMeReusables.js"></script>
+
+<img id="logoImage" src="flags/logo.png">
+<img id="patternImage" src="flags/pattern.png">
+<img id="englishImage" src="flags/english.png">
+<img id="arabicImage" src="flags/arabic.png">
+
 <script>
 
-    //https://observablehq.com/@d3/multitouch
-    //https://blocks.roadtolarissa.com/fil/ed3381a662b7619805eb6607d3407b02
-    var promises = [
-        d3.json("data/world_topo.json"),
-        d3.json("data/charts.json"),
-        d3.json("data/data_0.json"),
-        d3.json("data/data_1.json"),
-        d3.json("data/data_2.json"),
-        d3.json("data/data_3.json"),
-        d3.json("data/data_4.json"),
-        d3.json("data/data_5.json"),
-        d3.json("data/data_6.json"),
-        d3.json("data/data_7.json")
-    ]
-    Promise.all(promises).then(ready)
+    d3.select("#englishImage")
+        .on("mouseover",function(d){
+            d3.select(this).style("opacity",0.9)
+        })
+        .on("mouseout",function(d){
+            d3.select(this).style("opacity",1)
+        })
+    .on("click",function(d){
+        window.open("charts.html?lang=EN", "_self");
+    });
 
-    function ready(all_datasets) {
-
-            let buttonGroups = [];
-            all_datasets[1].forEach(function(d){
-                buttonGroups.push(d.name);
-                if(d.id === 0){
-                    d.data = all_datasets[2];
-                } else if (d.id === 1){
-                    d.data = all_datasets[3];
-                } else if (d.id === 2){
-                    d.data = all_datasets[4];
-                } else if (d.id === 3){
-                    d.data = all_datasets[5];
-                } else if (d.id === 4){
-                    d.data = all_datasets[6];
-                }  else if (d.id === 5){
-                    d.data = all_datasets[7];
-                } else if (d.id === 6){
-                    d.data = all_datasets[8];
-                } else if (d.id === 7){
-                    d.data = all_datasets[9];
-                } else {
-                    d.data = [];
-                }
-            });
-
-        initialiseDashboard({"map":all_datasets[0],"charts":all_datasets[1],"currentButtons":buttonGroups},"chartDiv","buttonsDiv");
-
-    };
-
-
+    d3.select("#arabicImage")
+        .on("mouseover",function(d){
+            d3.select(this).style("opacity",0.9)
+        })
+        .on("mouseout",function(d){
+            d3.select(this).style("opacity",1)
+        })
+        .on("click",function(d){
+            window.open("charts.html?lang=AR", "_self");
+        })
 </script>
 </body>
 </html>

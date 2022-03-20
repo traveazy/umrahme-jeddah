@@ -1,7 +1,7 @@
 body{
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
   margin:0;
   padding: 0;
   background-image: url(../flags/background.png);
@@ -9,29 +9,32 @@ body{
   -o-background-size:  100vw 100vh;
   -webkit-background-size:  100vw 100vh;
   background-size:  100vw 100vh;
+  fill: white;
 }
 
 #headerDiv{
   background-color: transparent;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   text-align: center;
+  color: white;
   line-height: 12vh;
   width: 100vw;
   height:12vh;
+  text-transform: capitalize;
 }
 #buttonsDiv{
-  height: 70px;
+  height: 15vh;
   width: 100vw;
 }
 #chartDiv{
   position: absolute;
   left: 12vw;
-  top: calc(12vh + 70px);
+  top: 27vh;
   float: left;
   background-color:  transparent;
   width: calc(100vw - 24vw);
-  height: calc(100vh - 24vh - 30px);
+  height: calc(100vh - 39vh);
 }
 
 .buttonText{
@@ -51,10 +54,8 @@ body{
 }
 
 .filterButtonText{
-  text-transform: capitalize;
   pointer-events: none;
-  font-size: 0.8em;
-  fill: #707070;
+  fill: white;
 }
 #market{
   fill: #3091BE;
@@ -69,40 +70,103 @@ body{
 }
 
 #tooltip{
+  text-transform: capitalize;
   visibility: hidden;
   border: 1px solid grey;
   border-radius: 4px;
   position: absolute;
   text-align: center;
   padding: 3px;
-  background: white;
+  background: #3091BE;
   pointer-events: none;
-  font-size: 0.8em;
+  font-size: 1em;
   width: auto;
   height: auto;
+  color: white;
   margin-right: 80px;
 }
+
+#logoImage{
+  position: absolute;
+  padding: 0px;
+  width: 107px;
+  height: 39px;
+  left: calc(100vw - 137px);
+  top: calc(100vh - 69px);
+}
+
+#patternImage{
+  position: absolute;
+  padding: 0px;
+  width: 96px;
+  height: 27px;
+  left: calc(100vw - 95px);
+  top: 30px;
+}
+
+#englishImage{
+  cursor: pointer;
+  position: absolute;
+  padding: 0px;
+  width: 218px;
+  height: 176px;
+  left: calc(50vw - 223px);
+  top: calc(50vh - 88px);
+}
+
+#arabicImage{
+  cursor: pointer;
+  position: absolute;
+  padding: 0px;
+  width: 218px;
+  height: 176px;
+  left: calc(50vw + 5px);
+  top: calc(50vh - 88px);
+}
+
+.tooltipTitle{
+  font-size: 0.9em;
+}
+
 
 .legendTitle, .dataPosition{
   font-size: 1.2em;
   font-weight: bold;
   text-transform: uppercase;
+  fill: white;
 }
 
 .largerTitle{
+  fill: white;
   font-size: 1.4em;
   font-weight: bold;
   text-transform: uppercase;
 }
 
+.countryCounter{
+  text-anchor: middle;
+  fill: white;
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.countryCounterSmall{
+  text-anchor: middle;
+  fill: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
 .legendNumber {
-  font-size: 0.9em;
-  fill: #707070;
+  font-size: 0.8em;
+  fill: white;
 }
 
 .valueLabel{
   font-size: 0.9em;
-  fill: #707070;
+  fill: white;
 }
 .clickableGlobeItem {
   cursor: pointer;
@@ -115,23 +179,27 @@ body{
 .axis text{
   font-size: 1.2em;
   font-family: 'Open Sans', sans-serif;
+  fill: white;
 }
 .axis line,.brushAxis line {
   display: none;
 }
 .axis path ,.brushAxis path{
-  stroke: #D0D0D0;
+  stroke: white;
 }
 .histogramText{
   font-size: 1.2em;
+  fill: white;
 }
 .midAxis .tick text {
   font-size: 1.4em;
   font-family: 'Open Sans', sans-serif;
+  fill: white;
 }
 
 .brushAxis .tick text {
   font-family: 'Open Sans', sans-serif;
+  fill: white;
 }
 
 .midAxis line,.midAxis path {

@@ -798,14 +798,6 @@
           }
         },
         {
-          "type": null,
-          "id": 36,
-          "properties": {
-            "name": "Australia",
-            "color": "#1f77b4"
-          }
-        },
-        {
           "type": "MultiPolygon",
           "arcs": [
             [

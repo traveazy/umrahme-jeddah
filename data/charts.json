@@ -1,10 +1,7 @@
-[{"id": 0,"name": "agents","title": "Registered Agents","type": "globe", "colorRange": ["#fde8ee","#ED1A64"],"colorVar": "Count","format": ",","filterBy": ""},
-  {"id": 1,"name": "top 5","title": "Top 5 Countries by Revenue","type": "map_bar",  "colorRange": ["#d1f3f2","#19C5BD"],"colorVar": "Revenue","format": ".0%", "filterBy": "Season"},
-  {"id": 2,"name": "passengers","title": "Mu'tamir Booked with Umrahme","type": "globe",  "colorRange": ["#e2d6eb","#4C1088"],"colorVar": "Booked","format": ",", "filterBy": ""},
-  {"id": 3,"name": "bookings","title": "Highest Booked Hotel Category","type": "pyramid","colorRange": ["#FFA800","#19C5BD"],"colorVars": ["Makkah","Madinah"],"binVar": "Rating" ,"format": ".0%", "filterBy": "Category","filterBy2": "Season"},
-   {"id":4,"name": "transport","title": "Transportation Types | Booking Value","type": "bar", "filterBy": "Vehicle","color": "#4C1088","format": ".0%"},
-  {"id": 5,"name": "ecosystem","title": "Ecosystem Map","type": "network"},
-  {"id": 6,"name": "traffic","title": "Website Traffic","type": "globe","colorRange": ["#d2e9f4","#3091BE"],"colorVar": "Users","format": ".0%","filterBy": ""},
-  {"id": 7,"name": "growth","title": "Umrahme Company Growth","type": "area", "color": "#ED1A64","format": ".0%"},
-  {"id": 8,"name": "social","title": "TBC social related??","type": "wordcloud"}
-]
+[{"id": 0,"name": "# agents","arabicName": "الوكلاء ","title": "Registered Agents","arabicTitle": "الوكلاء المسجلين بالمنصة ","type": "globe", "colorRange": ["#fde8ee","#ED1A64"],"colorVar": "Count","format": ".0%","filterBy": ""},
+  {"id": 1,"name": "top 10","arabicName": "أكبر 10","title": "Top 10 Countries | Booking Value","arabicTitle": "الدول العشر الأوائل | قيمة الحجز","type": "map_bar",  "colorRange": ["#d1f3f2","#19C5BD"],"colorVar": "Revenue","format": ".0%", "filterBy": "Season"},
+  {"id": 2,"name": "bookings","arabicName": "الحجوزات","title": "Pilgrims Booked through Umrahme","arabicTitle": "ضيوف الرحمن الذين قاموا بالحجز عن طريق منصة عمرة مي","type": "bubble",  "colorRange": ["#e2d6eb","#4C1088"],"colorVar": "Booked","format": ".1%", "filterBy": ""},
+  {"id": 3,"name": "hotel sales","arabicName": "حجم مبيعات الفنادق","title": "Highest Booked Hotel Category","arabicTitle": "أعلى فئة فنادق يتم حجزها","type": "pyramid","colorRange": ["#FFA800","#19C5BD"],"colorVars": ["Makkah","Madinah"],"colorVarsArabic": ["مكة المكرمة","المدينة المنورة"],"buttonVarsArabic" : ["قيمة الحجز","عدد الليالي الفندقية"],"binVar": "Rating" ,"format": ".0%", "filterBy": "Category","filterBy2": "Season"},
+   {"id":4,"name": "transport","arabicName": "وسائل النقل","title": "Transportation Types | Booking Value","arabicTitle": "أنواع وسائل النقل | قيمة الحجز","type": "bar", "filterBy": "Vehicle","arabicTransport":["حافلة","سيارة سيدان","سيارة دفع رباعي","سيارة فان"],"color": {"Van":"#3699FF","Bus":"#19C5BD","Sedan Car":"#FFA800","SUV Car":"#F54F60"},"format": ".0%"},
+  {"id": 5,"name": "ecosystem","arabicName": "منظومة الخدمات","title": "Ecosystem Map","arabicTitle": "خريطة الخدمات","type": "network"},
+  {"id": 6,"name": "traffic","arabicName": "الزيارات من الدولً","title": "Website Traffic","arabicTitle": "عدد الزيارات على الموقع","type": "globe_double","colorRange": ["#d2e9f4","#3091BE"],"colorVar": "Users","format": ".0%","filterBy": "","arabicCountries": "الدول"}]

@@ -1,11 +1,12 @@
 {"nodes": [
   {"id": 0,"name": "umrahme","image": "umrahme.png","size": "big"},
   {"id": 1,"name": "maqam","image": "maqam.png","size": "big"},
-  {"id": 2,"name": "airlines","icon": "\uf072","size": "small"},
-  {"id": 3,"name": "hotels","icon": "\uf574","size": "small"},
-  {"id": 4,"name": "transport","icon": "\uf55e","size": "small"},
-  {"id": 5,"name": "umrah operators","icon": "\uf82d","size": "small"},
-  {"id": 6,"name": "umrah agents","icon": "\uf608","size": "small"}
+  {"id": 2,"name": "umrah agents","icon": "\uf183","size": "small"},
+  {"id": 3,"name": "airlines","icon": "\uf5b0","size": "small"},
+  {"id": 4,"name": "hotels","icon": "\uf594","size": "small"},
+  {"id": 5,"name": "transport","icon": "\uf85a","size": "small"},
+  {"id": 6,"name": "umrah operators","icon": "\uf0c0","size": "small"}
+
 ],"links": [
   {"source": 1,"target": 0},
   {"source": 0,"target": 2},

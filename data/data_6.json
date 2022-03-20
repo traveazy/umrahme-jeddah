@@ -37,7 +37,7 @@
   },
   {
     "Country": "Morocco",
-    "Users": 0.02
+    "Users": 0.05
   },
   {
     "Country": "Kazakhstan",
@@ -49,7 +49,7 @@
   },
   {
     "Country": "United Kingdom",
-    "Users": 0.02
+    "Users": 0.03
   },
   {
     "Country": "Afghanistan",
@@ -61,11 +61,11 @@
   },
   {
     "Country": "Libya",
-    "Users": 0.01
+    "Users": 0.03
   },
   {
     "Country": "Qatar",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Belgium",
@@ -73,7 +73,7 @@
   },
   {
     "Country": "Malaysia",
-    "Users": 0.01
+    "Users": 0.06
   },
   {
     "Country": "Netherlands",
@@ -81,7 +81,7 @@
   },
   {
     "Country": "Algeria",
-    "Users": 0.01
+    "Users": 0.03
   },
   {
     "Country": "Albania",
@@ -89,7 +89,7 @@
   },
   {
     "Country": "Germany",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Tunisia",
@@ -109,11 +109,11 @@
   },
   {
     "Country": "Turkey",
-    "Users": 0.01
+    "Users": 0.07
   },
   {
     "Country": "Kenya",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Yemen",
@@ -133,11 +133,11 @@
   },
   {
     "Country": "Canada",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Iraq",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Italy",
@@ -145,7 +145,7 @@
   },
   {
     "Country": "Oman",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Azerbaijan",
@@ -165,7 +165,7 @@
   },
   {
     "Country": "Sudan",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Zimbabwe",
@@ -233,7 +233,7 @@
   },
   {
     "Country": "Somalia",
-    "Users": 0.01
+    "Users": 0.02
   },
   {
     "Country": "Ghana",
