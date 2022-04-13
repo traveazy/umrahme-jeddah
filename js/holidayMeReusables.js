@@ -64,7 +64,7 @@ function mapBubbles() {
                 .scaleExtent([1, 8])
                 .on("zoom", zoomed);
 
-            baseSvg.call(zoom);
+        baseSvg.call(zoom);
 
         function zoomed({transform}) {
             svg.attr("transform", transform);
@@ -1291,7 +1291,7 @@ function pyramidChart() {
             .style("cursor" ,"pointer")
             .on("mousemove",function(event,d){
                 d3.selectAll(".histogramGroup").attr("opacity",0.2);
-                d3.selectAll("#p" + d.replace(/ /g,"")).attr("opacity",1);
+                d3.selectAll("#p" + d.replace(/ /g,"").replace(/&/g,"")).attr("opacity",1);
                 if(holidayMe.mouseoverTimer !== ""){holidayMe.mouseoverTimer.stop()};
                 holidayMe.mouseoverTimer = d3.timer(function(){
                     d3.selectAll(".histogramGroup").attr("opacity",1);
@@ -1352,7 +1352,7 @@ function pyramidChart() {
             histogramGroup.select(".histogramBar")
                 .style("cursor" ,"pointer")
                 .attr("class", d => "histogramGroup histogramBar " + d.position)
-                .attr("id", d =>  "p" + d.binVal.replace(/ /g,""))
+                .attr("id", d =>  "p" + d.binVal.replace(/ /g,"").replace(/&/g,""))
                 .attr("x", d => d.position === "left" ? (width/2) - (pyramidGap/2) : (width/2) + (pyramidGap/2))
                 .attr("y", d => yScale(d.binVal) + margins.top + 5)
                 .attr("width", 0)
@@ -1377,7 +1377,7 @@ function pyramidChart() {
 
 
             histogramGroup.select(".histogramText")
-                .attr("id", d =>  "p" + d.binVal.replace(/ /g,""))
+                .attr("id", d =>  "p" + d.binVal.replace(/ /g,"").replace(/&/g,""))
                 .attr("pointer-events","none")
                 .attr("class", d => "histogramGroup histogramText " + d.position)
                 .attr("x", d => d.position === "left" ? (width/2) - (pyramidGap/2) - 3 : (width/2) + (pyramidGap/2) + 3)

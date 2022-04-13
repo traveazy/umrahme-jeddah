@@ -23,7 +23,11 @@
 <script type="text/javascript" src="js/holidayMeReusables.js"></script>
 <script>
 
-
+    //document.getElementById("myCheck").click();
+    //different index for big screen (no index.html) - exactly the same BUT timeout at the end which loops through buttons and clicks
+    //loops through buttons based on number of charts - switches language - loops again and so on.
+    //stop/start button at bottom left (very discreet).
+    
     //https://observablehq.com/@d3/multitouch
     //https://blocks.roadtolarissa.com/fil/ed3381a662b7619805eb6607d3407b02
     var promises = [
@@ -68,30 +72,9 @@
                     d.data = [];
                 }
             });
-        initialiseDashboard({"arabicCountries":all_datasets[10],"map":all_datasets[0],"charts":all_datasets[1],"currentButtons":buttonGroups,"language":"AR"},"chartDiv","buttonsDiv");
 
-        let currentButton = 0, currentLanguage = "AR";
-        let myAnimation = "";
-        startInterval();
-        function startInterval (){
-            myAnimation = setInterval(function () {
-                if(currentButton === all_datasets[1].length){
-                    clearInterval(myAnimation);
-                    currentButton = 0;
-                    currentLanguage = (currentLanguage === "AR" ? "EN" : "AR");
-                    d3.select(".chartDiv_svg").selectAll("*").remove();
-                    initialiseDashboard({"arabicCountries":all_datasets[10],"map":all_datasets[0],"charts":all_datasets[1],"currentButtons":buttonGroups,"language":currentLanguage},"chartDiv","buttonsDiv");
-                    startInterval()
-                } else{
-                    d3.select("#button" + currentButton).dispatch("click");
-                    currentButton += 1;
-                }
-            },20000);
-        }
-        //document.getElementById("myCheck").click();
-        //different index for big screen (no index.html) - exactly the same BUT timeout at the end which loops through buttons and clicks
-        //loops through buttons based on number of charts - switches language - loops again and so on.
-        //stop/start button at bottom left (very discreet).
+
+        initialiseDashboard({"arabicCountries":all_datasets[10],"map":all_datasets[0],"charts":all_datasets[1],"currentButtons":buttonGroups,"language":language},"chartDiv","buttonsDiv");
 
     };
 

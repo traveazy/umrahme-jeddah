@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Umrahme | Jeddah</title>
+    <link rel="stylesheet" href="css/holidayMe.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="lib/d3.json" type="text/javascript"></script>
+
+</head>
+<body>
+
+<img id="logoImage" src="flags/logo.png">
+<img id="patternImage" src="flags/pattern.png">
+<img id="englishImage" src="flags/english.png">
+<img id="arabicImage" src="flags/arabic.png">
+
+<script>
+
+    d3.select("#englishImage")
+        .on("mouseover",function(d){
+            d3.select(this).style("opacity",0.9)
+        })
+        .on("mouseout",function(d){
+            d3.select(this).style("opacity",1)
+        })
+    .on("click",function(d){
+        window.open("charts.html?lang=EN", "_self");
+    });
+
+    d3.select("#arabicImage")
+        .on("mouseover",function(d){
+            d3.select(this).style("opacity",0.9)
+        })
+        .on("mouseout",function(d){
+            d3.select(this).style("opacity",1)
+        })
+        .on("click",function(d){
+            window.open("charts.html?lang=AR", "_self");
+        })
+</script>
+</body>
+</html>
